@@ -9,16 +9,19 @@
 7. sending chat messages
 8. registering for the email website
 9. search for an email
-10. 
-11. 
-12. 
+10. forwarding an email
+11. creating an email group
+12. assigning members to an email group
+13. add functionality for email & chat attachments
+14. advanced search using regex
+15. cc/bcc function for emails
 
 ## Non-functional Requirements
 
-1. email website is able to work on google chrome
-2. 
-3. 
-4. 
+1. email website is able to work on chromium browsers and firefox
+2. email website response to user input with either a success or error confirmation within 5 seconds
+3. email website implements multilingual support
+4. each page of the email website must load within 5 seconds
 
 ## Use Cases
 
