@@ -11,10 +11,8 @@
 9. search for an email
 10. forwarding an email
 11. creating an email group
-12. assigning members to an email group
-13. add functionality for email & chat attachments
-14. advanced search using regex
-15. cc/bcc function for emails
+12. adding attachments in an email
+13. search for a chat messages in chat channel
 
 ## Non-functional Requirements
 
@@ -51,9 +49,9 @@ successfully registered
 
 2. Sending an email
 - **Pre-condition:**
-login and recipient email address
+Login and recipient email address
 - **Trigger:**
-user pushes “compose” button
+User pushes “compose” button
 - **Primary Sequence:**
   1. User is prompted to login 
   2. User clicks compose button
@@ -78,11 +76,11 @@ User gets pop up notification that the email has been sent
   8. System communicates that email is sent
   9. User logs out
 
-3. Flagging an email as urgente
+3. Flagging an email as urgent
 - **Pre-condition:**
-user is logged in and email is selectedd
+User is logged in and email is selected
 - **Trigger:**
-user selects the “urgent” flag
+User selects the “urgent” flag
 - **Primary Sequence:**
 
   1. User is prompted to loginn
@@ -91,7 +89,7 @@ user selects the “urgent” flag
   4. User logs out
 
 - **Primary Postconditions:**
-User gets a pop up notification that the email has been marked as urgentd
+User gets a pop up notification that the email has been marked as urgent
 - **Alternate Sequence:**
   1. User is prompted to login
   2. User selects the email they want to flag as urgent
@@ -106,7 +104,7 @@ User is logged in and on the home page.
 - **Trigger:** 
 User clicks the "Create Email Group" button.
 - **Primary Sequence:**
-  
+ 
   1. User selects the "Create Email Group" button.
   2. User is served a new page to facilitates the creation of the email group.
   3. User enters a name for the email group in a textbox provided on the page.
@@ -118,12 +116,16 @@ User clicks the "Create Email Group" button.
 User has now created an email group, stored by the website in a database, which can be selected as a target for an email, delivering the email to all members in the group.
 
 - **Alternate Sequence:** 
-  
-  6. If the name for the email group, or any of the email addresses entered, are invalid, an error popup is shown, and the user is prompted to fix their error..
+  1. User selects the "Create Email Group" button.
+  2. User is served a new page to facilitates the creation of the email group.
+  3. User enters a name for the email group in a textbox provided on the page.
+  4. User enters up to 5 valid email addresses in textboxes provided on the page.
+  5. User selects the "Create" button.
+  6. User is served a new page which displays the newly created group (name & members), and a button to add more members (if applicable).
+  7. The user entered an invalid name for the email group, or any of the email addresses 
+  8. An error popup is shown detailing the specific error
+  9. The user is prompted to fix their error .
 
-- **Alternate Sequence:**
-
-  6. If the user has entered 0 email addresses, they are prompted to enter at least 1 before continuing.
 
 5. Assigning members to an email group
 - **Pre-condition:** 
@@ -160,8 +162,11 @@ User selects the "Advanced Search" button.
 - **Primary Postconditions:** 
 User is served a list of their emails matching their seach terms, and the search is saved to be accessible on a "Previous Searches" page.
 - **Alternate Sequence:** 
-  
-  5. If the user enters no search terms before selecting "Search" they are served an empty list of emails.
+  1. User selects the "Advanced Search" button.
+  2. User is served a new page where they can enter their search terms and a "Search" button.
+  3. User enters no search terms.
+  4. User selects the "Search" button.
+  5. User is served an empty list of emails and prompts user to enter search terms until completed.
 
 7. Use Case Name (Should match functional requirement name)
 - **Pre-condition:** 
