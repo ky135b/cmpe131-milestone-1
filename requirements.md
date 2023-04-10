@@ -8,7 +8,7 @@
 6. crossing off a task on the todo list
 7. sending chat messages
 8. registering for the email website
-9. search for an email
+9. advanced search using regex
 10. forwarding an email
 11. creating an email group
 12. adding attachments in an email
