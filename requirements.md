@@ -102,69 +102,68 @@ User gets a pop up notification that the email has been marked as urgentd
 
 4. Creating an email group
 - **Pre-condition:** 
-
+User is logged in and on the home page.
 - **Trigger:** 
-
+User clicks the "Create Email Group" button.
 - **Primary Sequence:**
   
-  1. ...
-  2. ...
-  3. ...
-  4. ... 
-  5. ...
-  6. ...
-  7. ...
-  8. ...
-  9. ...
-  10. ...
+  1. User selects the "Create Email Group" button.
+  2. User is served a new page to facilitates the creation of the email group.
+  3. User enters a name for the email group in a textbox provided on the page.
+  4. User enters up to 5 valid email addresses in textboxes provided on the page.
+  5. User selects the "Create" button.
+  6. User is served a new page which displays the newly created group (name & members), and a button to add more members (if applicable).
 
 - **Primary Postconditions:** 
+User has now created an email group, stored by the website in a database, which can be selected as a target for an email, delivering the email to all members in the group.
 
 - **Alternate Sequence:** 
   
-  1. ...
-  2. ...
-  3. ...
+  6. If the name for the email group, or any of the email addresses entered, are invalid, an error popup is shown, and the user is prompted to fix their error..
 
-- **Alternate Sequence <optional>:** 
-  
-  1. ...
-  2. ...
-  3. ...
+- **Alternate Sequence:**
+
+  6. If the user has entered 0 email addresses, they are prompted to enter at least 1 before continuing.
 
 5. Assigning members to an email group
 - **Pre-condition:** 
-
+User is logged in and on the page for the email group they want to assign members to.
 - **Trigger:** 
-
+User selects the "Add Member" button.
 - **Primary Sequence:**
   
-  1. ...
-  2. ...
-  3. ...
-  4. ... 
-  5. ...
-  6. ...
-  7. ...
-  8. ...
-  9. ...
-  10. ...
+  1. User selects the "Add Member" button.
+  2. User is served with a new page to facilitate the addition of new members, with up to 5 textboxes depending on the amount of members already in the group.
+  3. User enters new email addresses in the textboxes provided on the page.
+  4. User selects the "Add Member(s)" button.
+  5. User is served a new page which displays the modified group (name & members), and a button to add more members (if applicable).
 
 - **Primary Postconditions:** 
-
+User has now modified the group to add members to their selected email group, up to a maximum of 5.
 - **Alternate Sequence:** 
   
-  1. ...
-  2. ...
-  3. ...
-
-- **Alternate Sequence <optional>:** 
+  5. If the user has entered 0 email addresses, a popup is shown saying no emails were added to the group, and the user is returned the the page for the relevant email group.
   
-  1. ...
-  2. ...
-  3. ...
-
 6. Advanced search using regex
+- **Pre-condition:** 
+The user is logged in and on the home page.
+- **Trigger:** 
+User selects the "Advanced Search" button.
+- **Primary Sequence:**
+  
+  1. User selects the "Advanced Search" button.
+  2. User is served a new page where they can enter their search terms and a "Search" button.
+  3. User enters their search terms.
+  4. User selects the "Search" button.
+  5. User is served a list of their emails matching their search terms.
+
+- **Primary Postconditions:** 
+User is served a list of their emails matching their seach terms, and the search is saved to be accessible on a "Previous Searches" page.
+- **Alternate Sequence:** 
+  
+  5. If the user enters no search terms before selecting "Search" they are served an empty list of emails.
+
+7. Use Case Name (Should match functional requirement name)
 - **Pre-condition:** 
 
 - **Trigger:** 
@@ -196,7 +195,8 @@ User gets a pop up notification that the email has been marked as urgentd
   2. ...
   3. ...
 
-Number. Use Case Name (Should match functional requirement name)
+
+8. Use Case Name (Should match functional requirement name)
 - **Pre-condition:** 
 
 - **Trigger:** 
