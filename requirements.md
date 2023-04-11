@@ -1,17 +1,17 @@
 ## Functional Requirements
 
-1. sending an email
-2. deleting an email
-3. flagging an email as urgent
-4. creating a new todo list
-5. creating a new task on the todo list
-6. crossing off a task on the todo list
-7. sending chat messages
-8. registering for the email website
-9. advanced search using regex
-10. forwarding an email
-11. creating an email group
-12. adding attachments in an email
+1. sending an email @n-k-leung
+2. deleting an email @rudysuarez1
+3. flagging an email as urgent @n-k-leung
+4. creating a new todo list @n-k-leung
+5. creating a new task on the todo list @rudysuarez1
+6. crossing off a task on the todo list @rudysuarez1
+7. sending chat messages @rudysuarez1
+8. registering for the email website @n-k-leung
+9. advanced search using regex @ky135b
+10. forwarding an email @ky135b
+11. creating an email group @ky135b
+12. adding attachments in an email @ky135b
 
 ## Non-functional Requirements
 
@@ -22,7 +22,8 @@
 
 ## Use Cases
 
-1. Registering for website
+1. Registering for the email website
+Author: @n-k-leung
 - **Pre-condition:**
 user has a valid email address and a password
 - **Trigger:**
@@ -47,6 +48,7 @@ successfully registered
   6. User is prompted to a new page, which is their email page
 
 2. Sending an email
+Author: @n-k-leung
 - **Pre-condition:**
 Login and recipient email address
 - **Trigger:**
@@ -76,6 +78,7 @@ User gets pop up notification that the email has been sent
   9. User logs out
 
 3. Flagging an email as urgent
+Author: @n-k-leung
 - **Pre-condition:**
 User is logged in and email is selected
 - **Trigger:**
@@ -98,42 +101,51 @@ User gets a pop up notification that the email has been marked as urgent
   6. User logs out
 
 4. Creating an email group
+Author: @ky135b
 - **Pre-condition:** 
-User is logged in and on the home page.
+User is able to logged in.
 - **Trigger:** 
 User clicks the "Create Email Group" button.
 - **Primary Sequence:**
- 
-  1. User selects the "Create Email Group" button.
-  2. User is served a new page to facilitate the creation of the email group.
-  3. User enters a name for the email group in a textbox provided on the page.
-  4. User enters up to 5 valid email addresses in textboxes provided on the page.
-  5. User selects the "Create" button.
-  6. User is served a new page which displays the newly created group (name & members), and a button to add more members (if applicable).
+
+  1. User is prompted to login.
+  2. User selects the "Create Email Group" button.
+  3. User is served a new page to facilitate the creation of the email group.
+  4. User enters a name for the email group in a textbox provided on the page.
+  5. User enters up to 5 valid email addresses in textboxes provided on the page.
+  6. User selects the "Create" button.
+  7. User is served a new page which displays the newly created group (name & members), and a button to add more members (if applicable).
+  8. User logs out.
 
 - **Primary Postconditions:** 
 User has now created an email group, stored by the website in a database, which can be selected as a target for an email, delivering the email to all members in the group.
 
 - **Alternate Sequence:** 
-  1. User selects the "Create Email Group" button.
-  2. User is served a new page to facilitate the creation of the email group.
-  3. User enters a name for the email group in a textbox provided on the page.
-  4. User enters up to 5 valid email addresses in textboxes provided on the page.
-  5. User selects the "Create" button.
-  6. The user entered an invalid name for the email group, or one or multiple invalid email addresses, and an error popup is shown detailing this error.
-  7. The user is prompted to fix their error.
+  1. User is prompted to login.
+  2. User selects the "Create Email Group" button.
+  3. User is served a new page to facilitate the creation of the email group.
+  4. User enters a name for the email group in a textbox provided on the page.
+  5. User enters up to 5 valid email addresses in textboxes provided on the page.
+  6. User selects the "Create" button.
+  7. The user entered an invalid name for the email group, or one or multiple invalid email addresses, and an error popup is shown detailing this error.
+  8. The user is prompted to fix their error.
+  9. User logs out.
 
-5. Adding attachments in an emailp
+5. Adding attachments in an email
+Author: @ky135b
 - **Pre-condition:** 
-User is logged in and currently composing an email.
+User is able to log in.
 - **Trigger:** 
 User selects the attachment button.
 - **Primary Sequence:**
-  
-  1. User selects the attachment button.
-  2. User is prompted to attach a file through a popup.
-  3. User selects the file to attach.
-  4. The popup goes away, leaving the user to continue composing their email.
+
+  1. Use is prompted to login.
+  2. User begins composing an email.
+  3. User selects the attachment button.
+  4. User is prompted to attach a file through a popup.
+  5. User selects the file to attach.
+  6. The popup goes away, leaving the user to continue composing their email.
+  7. User logs out.
   
 - **Primary Postconditions:** 
 User has now added an attachment to their email, which will be sent with it to their recipient (and stored on the server). The user will also see an X next to their attachment, allowing them to delete the attachment.
@@ -146,29 +158,35 @@ User has now added an attachment to their email, which will be sent with it to t
   5. User may select the attachment button again if they decide to attach a file, starting back at step 1. in the sequence.
   
 6. Advanced search using regex
+Author: @ky135b
 - **Pre-condition:** 
-The user is logged in and on the home page.
+The user is able to log in.
 - **Trigger:** 
 User selects the "Advanced Search" button.
 - **Primary Sequence:**
-  
-  1. User selects the "Advanced Search" button.
-  2. User is served a new page where they can enter their search terms and a "Search" button.
-  3. User enters their search terms.
-  4. User selects the "Search" button.
-  5. User is served a list of their emails matching their search terms.
 
+  1. User is prompted to login.
+  2. User selects the "Advanced Search" button.
+  3. User is served a new page where they can enter their search terms and a "Search" button.
+  4. User enters their search terms.
+  5. User selects the "Search" button.
+  6. User is served a list of their emails matching their search terms.
+  7. User logs out.
+  
 - **Primary Postconditions:** 
 User is served a list of their emails matching their seach terms, and the search is saved to be accessible on a "Previous Searches" page.
 - **Alternate Sequence:** 
 
-  1. User selects the "Advanced Search" button.
-  2. User is served a new page where they can enter their search terms and a "Search" button.
-  3. User enters no search terms.
-  4. User selects the "Search" button.
-  5. User is served an empty list of emails and page prompts user to enter search terms until.
+  1. User is prompted to login.
+  2. User selects the "Advanced Search" button.
+  3. User is served a new page where they can enter their search terms and a "Search" button.
+  4. User enters no search terms.
+  5. User selects the "Search" button.
+  6. User is served an empty list of emails and page prompts user to enter search terms until.
+  7. User logs out.
 
 7. Use Case Name (Should match functional requirement name)
+Author: @rudysuarez1
 - **Pre-condition:** 
 
 - **Trigger:** 
@@ -202,6 +220,7 @@ User is served a list of their emails matching their seach terms, and the search
 
 
 8. Use Case Name (Should match functional requirement name)
+Author: @rudysuarez1
 - **Pre-condition:** 
 
 - **Trigger:** 
