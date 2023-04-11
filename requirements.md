@@ -25,9 +25,9 @@
 1. Registering for the email website
 - **Author: @n-k-leung**
 - **Pre-condition:**
-user has a valid email address and a password
+User has a valid email address and a password
 - **Trigger:**
-user selects “register” button
+User selects “register” button
 - **Primary Sequence:**
 
   1. User selects the “register” button
@@ -50,7 +50,7 @@ successfully registered
 2. Sending an email
 - **Author: @n-k-leung**
 - **Pre-condition:**
-Login and recipient email address
+User is logged in and has valid recipient email address
 - **Trigger:**
 User pushes “compose” button
 - **Primary Sequence:**
@@ -85,7 +85,7 @@ User is logged in and email is selected
 User selects the “urgent” flag
 - **Primary Sequence:**
 
-  1. User is prompted to loginn
+  1. User is prompted to login
   2. User selects the email they want to flag as urgent
   3. User selects the urgent symbol to flag it as urgent
   4. User logs out
