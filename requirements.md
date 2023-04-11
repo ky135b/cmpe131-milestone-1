@@ -15,10 +15,8 @@
 
 ## Non-functional Requirements
 
-1. email website is able to work on chromium browsers and firefox
-2. email website response to user input with either a success or error confirmation within 5 seconds
-3. email website implements multilingual support
-4. each page of the email website must load within 5 seconds
+1. email website is able to work on chromium browsers and firefox browsers
+2. email website has multilingual support (e.g. Spanish)
 
 ## Use Cases
 
@@ -186,7 +184,7 @@ User is served a list of their emails matching their seach terms, and the search
   7. User logs out.
 
 7. Deleting an email
-Author: @rudysuarez1
+- **Author: @rudysuarez1**
 - **Pre-condition:** 
 User is logged in and email is selected
 - **Trigger:** 
@@ -220,7 +218,7 @@ User sees that the email has been deleted, gets pop up notification confirming t
 
 
 8. Creating a new task on the todo list
-Author: @rudysuarez1
+- **Author: @rudysuarez1**
 - **Pre-condition:** 
 User is logged into email and in todo list
 - **Trigger:** 
