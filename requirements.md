@@ -12,7 +12,6 @@
 10. forwarding an email
 11. creating an email group
 12. adding attachments in an email
-13. search for a chat messages in chat channel
 
 ## Non-functional Requirements
 
@@ -106,7 +105,7 @@ User clicks the "Create Email Group" button.
 - **Primary Sequence:**
  
   1. User selects the "Create Email Group" button.
-  2. User is served a new page to facilitates the creation of the email group.
+  2. User is served a new page to facilitate the creation of the email group.
   3. User enters a name for the email group in a textbox provided on the page.
   4. User enters up to 5 valid email addresses in textboxes provided on the page.
   5. User selects the "Create" button.
@@ -117,34 +116,34 @@ User has now created an email group, stored by the website in a database, which 
 
 - **Alternate Sequence:** 
   1. User selects the "Create Email Group" button.
-  2. User is served a new page to facilitates the creation of the email group.
+  2. User is served a new page to facilitate the creation of the email group.
   3. User enters a name for the email group in a textbox provided on the page.
   4. User enters up to 5 valid email addresses in textboxes provided on the page.
   5. User selects the "Create" button.
-  6. User is served a new page which displays the newly created group (name & members), and a button to add more members (if applicable).
-  7. The user entered an invalid name for the email group, or any of the email addresses 
-  8. An error popup is shown detailing the specific error
-  9. The user is prompted to fix their error .
+  6. The user entered an invalid name for the email group, or one or multiple invalid email addresses, and an error popup is shown detailing this error.
+  7. The user is prompted to fix their error.
 
-
-5. Assigning members to an email group
+5. Adding attachments in an emailp
 - **Pre-condition:** 
-User is logged in and on the page for the email group they want to assign members to.
+User is logged in and currently composing an email.
 - **Trigger:** 
-User selects the "Add Member" button.
+User selects the attachment button.
 - **Primary Sequence:**
   
-  1. User selects the "Add Member" button.
-  2. User is served with a new page to facilitate the addition of new members, with up to 5 textboxes depending on the amount of members already in the group.
-  3. User enters new email addresses in the textboxes provided on the page.
-  4. User selects the "Add Member(s)" button.
-  5. User is served a new page which displays the modified group (name & members), and a button to add more members (if applicable).
-
+  1. User selects the attachment button.
+  2. User is prompted to attach a file through a popup.
+  3. User selects the file to attach.
+  4. The popup goes away, leaving the user to continue composing their email.
+  
 - **Primary Postconditions:** 
-User has now modified the group to add members to their selected email group, up to a maximum of 5.
+User has now added an attachment to their email, which will be sent with it to their recipient (and stored on the server). The user will also see an X next to their attachment, allowing them to delete the attachment.
 - **Alternate Sequence:** 
   
-  5. If the user has entered 0 email addresses, a popup is shown saying no emails were added to the group, and the user is returned the the page for the relevant email group.
+  1. User selects the attachment button.
+  2. User is prompted to attach a file through a popup.
+  3. User decides not to attach a file and cancels the popup.
+  4. The popup goes away, leaving the user to continue composing their email.
+  5. User may select the attachment button again if they decide to attach a file, starting back at step 1. in the sequence.
   
 6. Advanced search using regex
 - **Pre-condition:** 
@@ -162,11 +161,12 @@ User selects the "Advanced Search" button.
 - **Primary Postconditions:** 
 User is served a list of their emails matching their seach terms, and the search is saved to be accessible on a "Previous Searches" page.
 - **Alternate Sequence:** 
+
   1. User selects the "Advanced Search" button.
   2. User is served a new page where they can enter their search terms and a "Search" button.
   3. User enters no search terms.
   4. User selects the "Search" button.
-  5. User is served an empty list of emails and prompts user to enter search terms until completed.
+  5. User is served an empty list of emails and page prompts user to enter search terms until.
 
 7. Use Case Name (Should match functional requirement name)
 - **Pre-condition:** 
