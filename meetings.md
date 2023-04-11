@@ -9,17 +9,17 @@
   - Set Ky as team lead.
 - Summary: We spent about 15-30 minutes going over requirements and splitting up the work.
 
-### 2023-04-13 at 1:30 PM
+### 2023-04-13 at 2:30 PM
 
-### 2023-04-20 at 1:30 PM
+### 2023-04-20 at 2:30 PM
 
-### 2023-04-27 at 1:30 PM
+### 2023-04-27 at 2:30 PM
 
-### 2023-05-03 at 1:30 PM
+### 2023-05-03 at 2:30 PM
 
-### 2023-05-10 at 1:30 PM
+### 2023-05-10 at 2:30 PM
 
-### 2023-05-17 at 1:30 PM
+### 2023-05-17 at 2:30 PM
 
 ### YYYY-MM-DD at HH:MM AM/PM
 - Attended:
