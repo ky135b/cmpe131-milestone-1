@@ -6,6 +6,7 @@
   - Clarified requirements for milestone.
   - Divided work between members.
   - Everyone will work on 4 functional requirements and 3 use cases. Ky will work on 2 non-functional requirements.
+  - Set Ky as team lead.
 - Summary: We spent about 15-30 minutes going over requirements and splitting up the work.
 
 ### 2023-04-13 at 1:30 PM

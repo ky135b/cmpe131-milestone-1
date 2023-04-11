@@ -9,7 +9,7 @@
 7. sending chat messages @rudysuarez1
 8. registering for the email website @n-k-leung
 9. advanced search using regex @ky135b
-10. forwarding an email @ky135b
+10. forwarding an email 
 11. creating an email group @ky135b
 12. adding attachments in an email @ky135b
 
@@ -23,7 +23,7 @@
 ## Use Cases
 
 1. Registering for the email website
-Author: @n-k-leung
+- **Author: @n-k-leung**
 - **Pre-condition:**
 user has a valid email address and a password
 - **Trigger:**
@@ -48,7 +48,7 @@ successfully registered
   6. User is prompted to a new page, which is their email page
 
 2. Sending an email
-Author: @n-k-leung
+- **Author: @n-k-leung**
 - **Pre-condition:**
 Login and recipient email address
 - **Trigger:**
@@ -78,7 +78,7 @@ User gets pop up notification that the email has been sent
   9. User logs out
 
 3. Flagging an email as urgent
-Author: @n-k-leung
+- **Author: @n-k-leung**
 - **Pre-condition:**
 User is logged in and email is selected
 - **Trigger:**
@@ -101,7 +101,7 @@ User gets a pop up notification that the email has been marked as urgent
   6. User logs out
 
 4. Creating an email group
-Author: @ky135b
+- **Author: @ky135b**
 - **Pre-condition:** 
 User is able to logged in.
 - **Trigger:** 
@@ -132,7 +132,7 @@ User has now created an email group, stored by the website in a database, which 
   9. User logs out.
 
 5. Adding attachments in an email
-Author: @ky135b
+- **Author: @ky135b**
 - **Pre-condition:** 
 User is able to log in.
 - **Trigger:** 
@@ -158,7 +158,7 @@ User has now added an attachment to their email, which will be sent with it to t
   5. User may select the attachment button again if they decide to attach a file, starting back at step 1. in the sequence.
   
 6. Advanced search using regex
-Author: @ky135b
+- **Author: @ky135b**
 - **Pre-condition:** 
 The user is able to log in.
 - **Trigger:** 
@@ -186,7 +186,7 @@ User is served a list of their emails matching their seach terms, and the search
   7. User logs out.
 
 7. Use Case Name (Should match functional requirement name)
-Author: @rudysuarez1
+- **Author: @rudysuarez1**
 - **Pre-condition:** 
 
 - **Trigger:** 
@@ -220,7 +220,7 @@ Author: @rudysuarez1
 
 
 8. Use Case Name (Should match functional requirement name)
-Author: @rudysuarez1
+- **Author: @rudysuarez1**
 - **Pre-condition:** 
 
 - **Trigger:** 
