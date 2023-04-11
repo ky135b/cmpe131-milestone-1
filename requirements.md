@@ -35,8 +35,8 @@ User selects the “register” button
   5. User is prompted to a new page, which is their email page
 
 - **Primary Postconditions:**
-User has now a registered account for email website and receives a confirmation email that they have 
-successfully registered
+User has now a registered account for email website and receives a confirmation email sent by sytem that they have 
+successfully registered.
 - **Alternate Sequence:**
   1. User selects the “register” button
   2. User is prompted to a new page to enter their desired email address and password to register
@@ -62,7 +62,7 @@ User pushes “compose” button
   8. User logs out
 
 - **Primary Postconditions:**
-User gets pop up notification that the email has been sent
+User gets pop up notification that the email has been sent. User sees that email is marked as sent by the system on the email home page.
 
 - **Alternate Sequence:**
   1. User is prompted to login 
@@ -89,7 +89,7 @@ User selects the “urgent” flag
   4. User logs out
 
 - **Primary Postconditions:**
-User gets a pop up notification that the email has been marked as urgent
+User gets a pop up notification that the email has been marked as urgent. Email is marked urgent by system by coloring the urgent symbol next to the email for visual confirmation.
 - **Alternate Sequence:**
   1. User is prompted to login
   2. User selects the email they want to flag as urgent
