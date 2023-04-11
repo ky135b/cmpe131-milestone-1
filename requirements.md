@@ -16,20 +16,20 @@
 ## Non-functional Requirements
 
 1. email website is able to work on chromium browsers and firefox browsers
-2. email website has multilingual support (e.g. Spanish)
+2. email website has multilingual support (e.g. English, Spanish)
 
 ## Use Cases
 
 1. Registering for the email website
 - **Author: @n-k-leung**
 - **Pre-condition:**
-User has a valid email address and a password
+User has a valid email address and password
 - **Trigger:**
-User selects “register” button
+User selects the “register” button
 - **Primary Sequence:**
 
   1. User selects the “register” button
-  2. User is prompted to a new page to enter email address and password to register
+  2. User is prompted to a new page to enter their desired email address and password to register
   3. User enters valid email address and valid password in their respective boxes
   4. User selects the “register” button again to validate the registration proces
   5. User is prompted to a new page, which is their email page
@@ -39,7 +39,7 @@ User has now a registered account for email website and receives a confirmation 
 successfully registered
 - **Alternate Sequence:**
   1. User selects the “register” button
-  2. User is prompted to a new page to enter email address and password to register
+  2. User is prompted to a new page to enter their desired email address and password to register
   3. User inputs a valid email address but an invalid password as it does not fit the rules of what a valid password should have
   4. User re-enters a new password that follows the rules
   5. User selects the “register” button again to validate the registration process
@@ -54,9 +54,9 @@ User pushes “compose” button
 - **Primary Sequence:**
   1. User is prompted to login 
   2. User clicks compose button
-  3. User enters name of draft and content of draft
-  4. User enters recipient email
-  5. System communicates that email is valid
+  3. User enters the name and content of their email draft
+  4. User enters recipient's email address
+  5. System communicates that their email draft is valid
   6. User presses send button
   7. System communicates that email is sent
   8. User logs out
@@ -67,7 +67,7 @@ User gets pop up notification that the email has been sent
 - **Alternate Sequence:**
   1. User is prompted to login 
   2. User clicks compose button
-  3. User enters name of draft and content of draft
+  3. User enters the name and content of their email draft
   4. User enters an invalid recipient email address
   5. System communicates that email is invalid
   6. User re-enters a valid recipient email address
@@ -101,7 +101,7 @@ User gets a pop up notification that the email has been marked as urgent
 4. Creating an email group
 - **Author: @ky135b**
 - **Pre-condition:** 
-User is able to logged in.
+User is logged in and on the home page.
 - **Trigger:** 
 User clicks the "Create Email Group" button.
 - **Primary Sequence:**
@@ -132,7 +132,7 @@ User has now created an email group, stored by the website in a database, which 
 5. Adding attachments in an email
 - **Author: @ky135b**
 - **Pre-condition:** 
-User is able to log in.
+User is logged in and composing an email.
 - **Trigger:** 
 User selects the attachment button.
 - **Primary Sequence:**
@@ -158,7 +158,7 @@ User has now added an attachment to their email, which will be sent with it to t
 6. Advanced search using regex
 - **Author: @ky135b**
 - **Pre-condition:** 
-The user is able to log in.
+The user is logged in and on the home page.
 - **Trigger:** 
 User selects the "Advanced Search" button.
 - **Primary Sequence:**
@@ -186,7 +186,7 @@ User is served a list of their emails matching their seach terms, and the search
 7. Deleting an email
 - **Author: @rudysuarez1**
 - **Pre-condition:** 
-User is logged in and email is selected
+User is logged in and an email is selected
 - **Trigger:** 
 User presses the delete button
 - **Primary Sequence:**
@@ -194,10 +194,10 @@ User presses the delete button
   1. User logs into email
   2. User selects an email on the home page
   3. User presses the delete button
-  4. User is prompted to confirm delete action
-  5. User confirms deletion through pressing confirmation button and the email is deleted 
-  6. User gets pop up notification that email is deleted
-  7. User is brought back to email list home page
+  4. User is prompted to confirm the delete action
+  5. User confirms deletion through pressing a confirmation button and the server deletes the emaild 
+  6. User gets a pop up notification confirming that the email was deleted
+  7. User is brought back to the home page
   8. User logs out
   
 
@@ -220,29 +220,29 @@ User sees that the email has been deleted, gets pop up notification confirming t
 8. Creating a new task on the todo list
 - **Author: @rudysuarez1**
 - **Pre-condition:** 
-User is logged into email and in todo list
+User is logged into email and on the todo list page
 - **Trigger:** 
-User presses add button on the todo list
+User presses the add button on the todo list page
 - **Primary Sequence:**
   
-  1. User logs into email 
-  2. User presses todo list botton
+  1. User logs into their email 
+  2. User presses the todo list button
   3. User is prompted to the to do list page
-  4. User presses add button on the todo list
+  4. User presses the add button on the todo list page
   5. User is then prompted to name the task
-  6. User hits enters after naming the task
-  7. User gets pop up notification that new task is created
+  6. User hits enter after naming the task
+  7. User gets a pop up notification that the new task was created
   8. User logs out
 
 - **Primary Postconditions:** 
 User gets pop up notification that new task is created and task added shows on the to do list
 - **Alternate Sequence:** 
-  1. User logs into email 
-  2. User presses todo list botton
-  3. User is prompted to the todo list page
-  4. User presses add button on the todo list
+  1. User logs into their email 
+  2. User presses the todo list button
+  3. User is prompted to the to do list page
+  4. User presses the add button on the todo list page
   5. User is then prompted to name the task
   6. User does not hit enter after naming the task
-  7. System communicates that new task is not added because the name has not been entered and prompts user to enter until completed
+  7. System communicates that new task is not added because the name has not been entered and prompts the user to enter until completed
 
 
