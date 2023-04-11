@@ -139,7 +139,7 @@ User is able to log in.
 User selects the attachment button.
 - **Primary Sequence:**
 
-  1. Use is prompted to login.
+  1. User is prompted to login.
   2. User begins composing an email.
   3. User selects the attachment button.
   4. User is prompted to attach a file through a popup.
@@ -185,69 +185,66 @@ User is served a list of their emails matching their seach terms, and the search
   6. User is served an empty list of emails and page prompts user to enter search terms until.
   7. User logs out.
 
-7. Use Case Name (Should match functional requirement name)
-- **Author: @rudysuarez1**
+7. Deleting an email
+Author: @rudysuarez1
 - **Pre-condition:** 
-
+User is logged in and email is selected
 - **Trigger:** 
-
+User presses the delete button
 - **Primary Sequence:**
   
-  1. ...
-  2. ...
-  3. ...
-  4. ... 
-  5. ...
-  6. ...
-  7. ...
-  8. ...
-  9. ...
-  10. ...
+  1. User logs into email
+  2. User selects an email on the home page
+  3. User presses the delete button
+  4. User is prompted to confirm delete action
+  5. User confirms deletion through pressing confirmation button and the email is deleted 
+  6. User gets pop up notification that email is deleted
+  7. User is brought back to email list home page
+  8. User logs out
+  
 
 - **Primary Postconditions:** 
-
+User sees that the email has been deleted, gets pop up notification confirming that email is deleted, and is brought back to email list home page.
 - **Alternate Sequence:** 
   
-  1. ...
-  2. ...
-  3. ...
+  1. User logs into email
+  2. User selects an email on the home page
+  3. User presses the delete button
+  4. User is prompted to confirm delete action
+  5. User does not confirm deletion by not selecting confirmation button and clicks out of the confirmation screen
+  6. User gets pop up notification that email is not deleted because it was not a confirmed action
+  7. User is clicks the delete button again and selects the confirmation button 
+  8. User gets pop up notification that email is deleted
+  9. User is brought back to email list home page
+  10. User logs out
 
-- **Alternate Sequence <optional>:** 
-  
-  1. ...
-  2. ...
-  3. ...
 
-
-8. Use Case Name (Should match functional requirement name)
-- **Author: @rudysuarez1**
+8. Creating a new task on the todo list
+Author: @rudysuarez1
 - **Pre-condition:** 
-
+User is logged into email and in todo list
 - **Trigger:** 
-
+User presses add button on the todo list
 - **Primary Sequence:**
   
-  1. ...
-  2. ...
-  3. ...
-  4. ... 
-  5. ...
-  6. ...
-  7. ...
-  8. ...
-  9. ...
-  10. ...
+  1. User logs into email 
+  2. User presses todo list botton
+  3. User is prompted to the to do list page
+  4. User presses add button on the todo list
+  5. User is then prompted to name the task
+  6. User hits enters after naming the task
+  7. User gets pop up notification that new task is created
+  8. User logs out
 
 - **Primary Postconditions:** 
-
+User gets pop up notification that new task is created and task added shows on the to do list
 - **Alternate Sequence:** 
-  
-  1. ...
-  2. ...
-  3. ...
+  1. User logs into email 
+  2. User presses todo list botton
+  3. User is prompted to the todo list page
+  4. User presses add button on the todo list
+  5. User is then prompted to name the task
+  6. User does not hit enter after naming the task
+  7. System communicates that new task is not added because the name has not been entered and prompts user to enter until completed
 
-- **Alternate Sequence <optional>:** 
-  
-  1. ...
-  2. ...
-  3. ...
+
