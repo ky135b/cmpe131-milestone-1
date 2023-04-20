@@ -9,7 +9,7 @@
 7. sending chat messages @rudysuarez1
 8. registering for the email website @n-k-leung
 9. advanced search using regex @ky135b
-10. forwarding an email 
+10. delete email account from email website
 11. creating an email group @ky135b
 12. adding attachments in an email @ky135b
 
@@ -105,28 +105,24 @@ User is logged in and on the home page.
 User clicks the "Create Email Group" button.
 - **Primary Sequence:**
 
-  1. User is prompted to login.
-  2. User selects the "Create Email Group" button.
-  3. User is served a new page to facilitate the creation of the email group.
-  4. User enters a name for the email group in a textbox provided on the page.
-  5. User enters up to 5 valid email addresses in textboxes provided on the page.
-  6. User selects the "Create" button.
-  7. User is served a new page which displays the newly created group (name & members), and a button to add more members (if applicable).
-  8. User logs out.
+  1. User selects the "Create Email Group" button.
+  2. User is served a new page to facilitate the creation of the email group.
+  3. User enters a name for the email group in a textbox provided on the page.
+  4. User enters up to 5 valid email addresses in textboxes provided on the page.
+  5. User selects the "Create" button.
+  6. User is served a new page which displays the newly created group (name & members), and a button to add more members (if applicable).
 
 - **Primary Postconditions:** 
 User has now created an email group, stored by the website in a database, which can be selected as a target for an email, delivering the email to all members in the group.
 
 - **Alternate Sequence:** 
-  1. User is prompted to login.
-  2. User selects the "Create Email Group" button.
-  3. User is served a new page to facilitate the creation of the email group.
-  4. User enters a name for the email group in a textbox provided on the page.
-  5. User enters up to 5 valid email addresses in textboxes provided on the page.
-  6. User selects the "Create" button.
-  7. The user entered an invalid name for the email group, or one or multiple invalid email addresses, and an error popup is shown detailing this error.
-  8. The user is prompted to fix their error.
-  9. User logs out.
+  1. User selects the "Create Email Group" button.
+  2. User is served a new page to facilitate the creation of the email group.
+  3. User enters a name for the email group in a textbox provided on the page.
+  4. User enters up to 5 valid email addresses in textboxes provided on the page.
+  5. User selects the "Create" button.
+  6. The user entered an invalid name for the email group, or one or multiple invalid email addresses, and an error popup is shown detailing this error.
+  7. The user is prompted to fix their error.
 
 5. Adding attachments in an email
 - **Author: @ky135b**
