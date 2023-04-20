@@ -30,12 +30,11 @@ User selects the “register” button
 
   1. User selects the “register” button
   2. User is prompted to a new page to enter their desired email address and password to register
-  3. User enters valid email address and valid password in their respective boxes
-  4. User selects the “register” button again to validate the registration proces
-  5. User is prompted to a new page, which is their email page
+  3. User enters valid email address and valid password in their respective boxes and selects the “register” button again to validate the registration process
+  4. User is prompted to a new page, which is their email page
 
 - **Primary Postconditions:**
-User has now a registered account for email website and receives a confirmation email sent by sytem that they have 
+User has now a registered account for email website and receives a confirmation email sent by system that they have 
 successfully registered.
 - **Alternate Sequence:**
   1. User selects the “register” button
@@ -195,7 +194,7 @@ User presses the delete button
   2. User selects an email on the home page
   3. User presses the delete button
   4. User is prompted to confirm the delete action
-  5. User confirms deletion through pressing a confirmation button and the server deletes the emaild 
+  5. User confirms deletion through pressing a confirmation button and the server deletes the email 
   6. User gets a pop up notification confirming that the email was deleted
   7. User is brought back to the home page
   8. User logs out
