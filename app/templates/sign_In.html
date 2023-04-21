@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>Home Page - my blog</title>
+    </head>
+    <body>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }} </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
+        {% block content %} {% endblock %}
+    </body>
+</html>
+{% block content %}
+<h1>Sign In</h1>
+<form action="" method="POST" novalidate>
+    {{form.hidden_tag()}}
+    <p> {{form.username.label}} <br>
+       {{form.username(size=32)}}</p>
+
+    <p> {{form.password.label}} <br>
+       {{form.password(size=32)}}</p>
+
+    <p> {{form.remember_me.label}} <br>
+       {{form.remember_me()}}</p>
+
+    <p>{{form.submit()}}</p>
+</form>
+{% endblock %}
