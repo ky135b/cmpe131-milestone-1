@@ -7,11 +7,12 @@
 
 ## Requirements
 Before running the website, the following commands can be run to make sure all required libraries are installed:
+
 ```
-pip install flask
-pip install flask_sqlalchemy
-pip install flask_login
-pip install flask_wtf
+pip3 install flask
+pip3 install flask_sqlalchemy
+pip3 install flask_login
+pip3 install flask_wtf
 ```
 
 ## Usage
