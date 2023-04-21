@@ -12,3 +12,6 @@ from flask_login import login_required
 @myapp_obj.route("/index.html")
 def index():
     return render_template('index.html')
+@myapp_obj.route("/sign_In.html")
+def index():
+    return render_template('sign_In.html')
