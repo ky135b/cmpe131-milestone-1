@@ -22,12 +22,29 @@
 ### 2023-04-20 at 2:30 PM
 - Attended: Ky, Natalie, Rudy
 - Updates:
-  - Discussed fixing milestone 1
+  - Discussed milestone 1 revision
 	- Ky will work on fixing typos, use case 4, and adding more detail to the meeting notes.
 	- Natalie will work on fixing typos and use case 1.
-	- Rudy will work on fing typos.
-  - Divided work between members for milestone 2
-	- each member will work on their assigned use case and implement it in the git repo
+	- Rudy will work on fixing typos.
+  - Added an additional meeting date on April 23 to review progress.
+  - Discussed milestone 2 work
+    - Confirmed what to work on and to discuss specific in class on April 21.
+    - After adding the basic site sturtcure (including a home page and a database), each member is to utilize pull requests to implement 4 requirements each.
+- Summary: Each member will work on their parts of milestone 1 that need revision and look over all files for typos. Each member will begin researching how ti implement their requirements, pending discussion in class on April 21.
+
+### 2023-04-21 at 10:30 AM
+- Attended: Ky, Natalie, Rudy
+- Updates:
+  - Completed milestone 1 revision and submitted token forms accordingly
+  - Discussed milestone 2 work
+    - Ky will work on implementing "advanced search using regex," "delete email account from email website," "adding attachments in an email," and logout.
+    - Natalie will work on implementing "sending an email," "creating a new todo list," "registering for the email website," and logout.
+    - Rudy will work on implementing "deleting an email," "creating a new task on the todo list," "crossing off a task on the todo list," and "sending chat messages."
+    - Each member will complete 1-2 requirements by April 23 ahead of the meeting.
+  - On the April 23 meeting, the team will discuss edits to readme.md and the ethics writeup for the milestone.
+  - Ky created a meetings branch to be used for updating meetings.md.
+  - A rule was added to the main branch which requires one group member to review and approve each pull request.
+- Summary: The group completed the milestone 1 revision and split up the bulk of the work for milestone 2, with some to be finished by April 23 and the rest to be finished by April 27.
 
 ### 2023-04-23 at 12:00 PM
 
