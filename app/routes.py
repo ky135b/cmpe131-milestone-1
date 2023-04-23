@@ -15,7 +15,6 @@ def index():
 
 # logout button should only appear when logged in
 @myapp_obj.route("/logout", methods=['POST', 'GET'])
-@login_required
 def logout():
     form = LogoutForm()
     if form.validate_on_submit():
