@@ -38,6 +38,7 @@ def getMember(name):
     
 @myapp_obj.route("/todo")
 def todo():
+    return render_template('todo.html')
 
 # logout button should only appear when logged in
 @myapp_obj.route("/logout", methods=['POST', 'GET'])
