@@ -47,6 +47,16 @@
 - Summary: The group completed the milestone 1 revision and split up the bulk of the work for milestone 2, with some to be finished by April 23 and the rest to be finished by April 27.
 
 ### 2023-04-23 at 12:00 PM
+- Attended: Ky, Natalie, Rudy
+- Updates:
+  - Ky completed logout page and started work on deleting account.
+  - Natalie completed login page and started work on todo list.
+  - Rudy started work on sending messages page.
+  - A pull request was made, reviewed, and merged for the logout page.
+  - The functionality of logout will be reviewed after login is merged.
+  - Everyone will continue to work on their requirements.
+  - Ky will write some bullet points for the ethics writeup, to be fleshed out during the meeting on April 27.
+- Summary: The group made progress towards their requirements and began merging their features into main.
 
 ### 2023-04-27 at 2:30 PM
 
