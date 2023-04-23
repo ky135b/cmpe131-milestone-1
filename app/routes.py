@@ -8,8 +8,8 @@ from flask_login import current_user
 from flask_login import login_user
 from flask_login import logout_user
 from flask_login import login_required
-@myapp_obj.route("/")
-@myapp_obj.route("/index.html")
+@myapp_obj.route("/", methods=['GET', 'POST'])
+@myapp_obj.route("/index.html", methods=['GET', 'POST'])
 def index():
     form = TodoForm()
     if form.validate_on_submit():
