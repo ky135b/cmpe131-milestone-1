@@ -7,5 +7,9 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
+
 class TodoForm(FlaskForm):
     submit = SubmitField('ToDo')
+
+class LogoutForm(FlaskForm):
+    submit = SubmitField("I'm sure - Logout")
