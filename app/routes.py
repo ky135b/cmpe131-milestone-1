@@ -1,7 +1,7 @@
 from flask import render_template
 from flask import redirect
 from flask import flash
-from .forms import LoginForm, LogoutForm, TodoForm, ReturnForm
+from .forms import LoginForm, LogoutForm, TodoForm, ReturnForm, RegisterForm
 from app import myapp_obj
 from flask_login import current_user
 from flask_login import login_user
@@ -20,7 +20,6 @@ def login():
         # check the password
         # if password matches
         # login_user(user)
-        flash(f'Here are the input {form.username.data} and {form.password.data}')
         return redirect('/index')
     return render_template('sign_In.html', form=form)
 @myapp_obj.route("/index", methods=['GET', 'POST'])
@@ -48,3 +47,21 @@ def logout():
         logout_user()
         return redirect("/")
     return render_template('logout.html', title = 'Logout Confirmation', form = form)
+@myapp_obj.route("/register", methods=['GET', 'POST'])
+def register():
+    # create form
+    form = RegisterForm()
+    # if form inputs are valid
+    if form.validate_on_submit():
+        # search database for username
+        # user = User.query.filter_by(...)
+        # check the password
+        # if password matches
+        # login_user(user)
+        if form.password.data != confirm.repassword.data:
+            return redirect('/register')
+        if not form.username.data:
+            return redirect('/register')
+        else:
+            return redirect('/')
+    return render_template('register.html', form=form)

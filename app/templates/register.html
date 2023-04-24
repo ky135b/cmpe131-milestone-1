@@ -1,20 +1,32 @@
 {% block content %}
-<h1>Sign In</h1>
+<h1>Register Page</h1>
 <form action="" method="POST" novalidate>
     {{form.hidden_tag()}}
     <p> {{form.username.label}} <br>
        {{form.username(size=32)}}</p>
+   
     {%for error in form.username.errors%}
     <span style="color: red;"> [{{error}}]</span>
     {% endfor %}
+
     <p> {{form.password.label}} <br>
        {{form.password(size=32)}}</p>
+
     {%for error in form.password.errors%}
     <span style="color: red;"> [{{error}}]</span>
     {% endfor %}
-    <p> {{form.remember_me.label}} <br>
-       {{form.remember_me()}}</p>
 
+    <p> {{form.confirm.label}} <br>
+       {{form.confirm(size=32)}}</p>
+
+    {%for error in form.confirm.errors%}
+    <span style="color: red;"> [{{error}}]</span>
+    {% endfor %}
+
+    <body>
+           Finish Registering by clicking the submit button.
+           You will be prompted to the sign in page </body>
     <p>{{form.submit()}}</p>
+
 </form>
 {% endblock %}
