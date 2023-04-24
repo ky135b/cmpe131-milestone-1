@@ -13,3 +13,6 @@ class TodoForm(FlaskForm):
 
 class LogoutForm(FlaskForm):
     submit = SubmitField("I'm sure - Logout")
+
+class ReturnForm(FlaskForm):
+    submit = SubmitField("Return to Home Page")
