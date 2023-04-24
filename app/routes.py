@@ -14,6 +14,8 @@ def login():
     # create form
     form = LoginForm()
     # if form inputs are valid
+    if form.register.data:
+       return redirect('/register') 
     if form.validate_on_submit():
         # search database for username
         # user = User.query.filter_by(...)
@@ -58,10 +60,10 @@ def register():
         # check the password
         # if password matches
         # login_user(user)
-        if form.password.data != confirm.repassword.data:
-            return redirect('/register')
-        if not form.username.data:
-            return redirect('/register')
-        else:
+#        if form.password.data != confirm.repassword.data:
+#            return redirect('/register')
+#        if not form.username.data:
+#            return redirect('/register')
+#        else:
             return redirect('/')
     return render_template('register.html', form=form)
