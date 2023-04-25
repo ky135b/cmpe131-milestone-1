@@ -23,6 +23,8 @@ class RegisterForm(FlaskForm):
     username = StringField('Email', validators=[DataRequired()])
 #    password = PasswordField('Password', validators=[DataRequired()])
 #    repassword = PasswordField('Confirm Password', validators=[DataRequired()])
+    #check if new password and confirm password are equal to each other
     password = PasswordField('New Password', [DataRequired(), EqualTo('confirm', message='Passwords must match')])
-    confirm  = PasswordField('Repeat Password')
+    confirm  = PasswordField('Confirm Password', [DataRequired(), EqualTo('confirm', message='Passwords must match')])
     submit = SubmitField('Submit')
+    sign = SubmitField('Sign In')

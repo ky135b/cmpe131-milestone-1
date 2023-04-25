@@ -14,6 +14,7 @@ def login():
     # create form
     form = LoginForm()
     # if form inputs are valid
+    # if clicked on register button
     if form.register.data:
        return redirect('/register') 
     if form.validate_on_submit():
@@ -28,7 +29,7 @@ def login():
 def index():
     form = TodoForm()
     if form.validate_on_submit():
-        flash('validate')
+#        flash('validate')
         return redirect("/todo")
     return render_template('index.html', form = form)
 @myapp_obj.route("/members/<string:name>/")
@@ -38,7 +39,7 @@ def getMember(name):
 def todo():
     form = ReturnForm()
     if form.validate_on_submit():
-        flash('validate')
+#        flash('validate')
         return redirect("/index")
     return render_template('todo.html', form = form)
 # logout button should only appear when logged in
@@ -54,6 +55,9 @@ def register():
     # create form
     form = RegisterForm()
     # if form inputs are valid
+    #if clicked sign in button
+    if form.sign.data:
+       return redirect('/')
     if form.validate_on_submit():
         # search database for username
         # user = User.query.filter_by(...)
