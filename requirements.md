@@ -1,9 +1,9 @@
 ## Functional Requirements
 
 1. sending an email @n-k-leung
-2. deleting an email @rudysuarez1
+2. deleting an email @n-k-leung
 3. flagging an email as urgent @n-k-leung
-4. creating a new todo list @n-k-leung
+4. clearing tasks of the todo list @rudysuarez1
 5. creating a new task on the todo list @rudysuarez1
 6. crossing off a task on the todo list @rudysuarez1
 7. sending chat messages @rudysuarez1
