@@ -2,11 +2,14 @@ from flask import render_template
 from flask import redirect
 from flask import flash
 from .forms import LoginForm, LogoutForm, TodoForm, ReturnForm, RegisterForm
+from werkzeug.security import generate_password_hash, check_password_hash
+from .models import User
 from app import myapp_obj
 from flask_login import current_user
 from flask_login import login_user
 from flask_login import logout_user
 from flask_login import login_required
+from . import db
 
 @myapp_obj.route("/", methods=['GET', 'POST'])
 @myapp_obj.route("/sign_In.html", methods=['GET', 'POST'])
@@ -23,6 +26,10 @@ def login():
         # check the password
         # if password matches
         # login_user(user)
+        user = User.query.filter_by(username=form.username.data).first()
+        if user is None or not user.check_password(form.password.data):
+            #print saying not registered and empty sign in fields
+            return redirect('/')
         return redirect('/index')
     return render_template('sign_In.html', form=form)
 @myapp_obj.route("/index", methods=['GET', 'POST'])
@@ -58,7 +65,15 @@ def register():
     #if clicked sign in button
     if form.sign.data:
        return redirect('/')
+    user = User.query.filter_by(username=form.username.data).first()
+    if user is not None: # if user already registered, then redirect back to sign in page
+        return redirect ('/')
     if form.validate_on_submit():
+            hashed_password = generate_password_hash(form.password.data, 'hash_eg')
+            new = User(username = form.username.data, email = form.email.data, password=hashed_password)
+            db.session.add(new)
+            db.session.commit()
+#    if form.validate_on_submit():
         # search database for username
         # user = User.query.filter_by(...)
         # check the password

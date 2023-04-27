@@ -4,7 +4,8 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, EqualTo
 
 class LoginForm(FlaskForm):
-    username = StringField('Email', validators=[DataRequired()])
+    username = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
@@ -20,7 +21,8 @@ class ReturnForm(FlaskForm):
     submit = SubmitField("Return to Home Page")
 
 class RegisterForm(FlaskForm):
-    username = StringField('Email', validators=[DataRequired()])
+    username = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired()])
 #    password = PasswordField('Password', validators=[DataRequired()])
 #    repassword = PasswordField('Confirm Password', validators=[DataRequired()])
     #check if new password and confirm password are equal to each other
