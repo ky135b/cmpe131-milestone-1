@@ -59,6 +59,20 @@
 - Summary: The group made progress towards their requirements and began merging their features into main.
 
 ### 2023-04-27 at 2:30 PM
+- Attended: Ky, Natalie, Rudy
+- Updates:
+  - Group reorganized and confirmed which requirements will be completed by each member:
+    - Ky will complete requirements 9, 10, 11, 12, and the logout requirement, with 10, 12, and logout being completed for milestone 2.
+    - Natalie will complete requirements 1, 2, 3, 8, and the login requirement, with 1, 8, and login being completed for milestone 2.
+    - Rudy will complete requirements 4, 5, 6, 7, with 4 and 7 being completed for milestone 2.
+  - Group reviewed process for setting up a route and making a pull request.
+  - Natalie and Ky will go to office hours to attempt to debug an issue with PR#8.
+  - Group decided to split up ethical writeup as follows:
+  	- Natalie will write the first paragraph (1/4th page) on "the ethical and professional responsibilities in building" this project.
+  	- Ky will write the second paragraph (1/4th page) on "the impact of engineering solutions in global, economic, environmental, and societal contexts."
+  	- Rudy will review the combined writeup for errors and typos, and modify as needed.
+  - Ky will modify requirements.md to be consistent with the revision feedback from milestone 1.
+- Summary: The group reassigned which requirements belong to which member, reviewed the processes for adding pages and features to the project, and split up the work for the ethics writeup.
 
 ### 2023-05-03 at 2:30 PM
 
