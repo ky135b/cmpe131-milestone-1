@@ -1,3 +1,4 @@
+{% extends "base.html" %}
 {% block content %}
 <h1>Create your Email Account</h1>
 <body> To register, please fill out the following fields below </body>
@@ -7,6 +8,7 @@
        {{form.username(size=32)}}
    
     {%for error in form.username.errors%}
+    <p> moo </p>
     <span style="color: red;"> [{{error}}]</span>
     {% endfor %}
     </p>

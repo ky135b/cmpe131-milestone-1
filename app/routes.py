@@ -10,6 +10,7 @@ from flask_login import login_user
 from flask_login import logout_user
 from flask_login import login_required
 from . import db
+from flask_mail import Message
 
 @myapp_obj.route("/", methods=['GET', 'POST'])
 @myapp_obj.route("/sign_In.html", methods=['GET', 'POST'])
@@ -29,6 +30,8 @@ def login():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
             #print saying not registered and empty sign in fields
+            flash('Username and email is not registered')
+            flash('To register, click the Register button')
             return redirect('/')
         else:
             return redirect('/index')
@@ -68,8 +71,9 @@ def register():
        return redirect('/')
     user = User.query.filter_by(username=form.username.data).first()
     if user is not None: # if user already registered, then redirect back to sign in page
-        error = 'Username or email already exists'
-        return redirect ('/')
+       flash('Username or email already exists')
+       # return f'''<body> username exists</body>'''
+       return redirect ('/register')
     if form.validate_on_submit():
             new = User(username = form.username.data, email = form.email.data)
             new.set_password(form.password.data)
