@@ -30,7 +30,8 @@ def login():
         if user is None or not user.check_password(form.password.data):
             #print saying not registered and empty sign in fields
             return redirect('/')
-        return redirect('/index')
+        else:
+            return redirect('/index')
     return render_template('sign_In.html', form=form)
 @myapp_obj.route("/index", methods=['GET', 'POST'])
 def index():
@@ -67,10 +68,11 @@ def register():
        return redirect('/')
     user = User.query.filter_by(username=form.username.data).first()
     if user is not None: # if user already registered, then redirect back to sign in page
+        error = 'Username or email already exists'
         return redirect ('/')
     if form.validate_on_submit():
-            hashed_password = generate_password_hash(form.password.data, 'hash_eg')
-            new = User(username = form.username.data, email = form.email.data, password=hashed_password)
+            new = User(username = form.username.data, email = form.email.data)
+            new.set_password(form.password.data)
             db.session.add(new)
             db.session.commit()
 #    if form.validate_on_submit():
@@ -79,10 +81,5 @@ def register():
         # check the password
         # if password matches
         # login_user(user)
-#        if form.password.data != confirm.repassword.data:
-#            return redirect('/register')
-#        if not form.username.data:
-#            return redirect('/register')
-#        else:
             return redirect('/')
     return render_template('register.html', form=form)
