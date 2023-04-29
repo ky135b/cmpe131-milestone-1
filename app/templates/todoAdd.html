@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="" method="POST" novalidate>
+    {{form.hidden_tag()}}
+    <p> {{form.content.label}}
+       {{form.content}}
+    {%for error in form.content.errors%}
+    <span style="color: red;"> [{{error}}]</span>
+    {% endfor %}
+    {{form.submit()}}
+    </p>
+</form>
+
+<a href="{{ url_for('todo') }}">Click here to go back to your Todo List!</a>
+
+{% include "login_footer.html" %}
+{% endblock %}

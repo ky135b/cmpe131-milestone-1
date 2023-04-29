@@ -26,8 +26,17 @@ class DeleteAccountForm(FlaskForm):
     password = StringField(validators=[DataRequired()])
     confirm = SubmitField("Confirm Account Deletion")
 
-class ReturnForm(FlaskForm):
-    submit = SubmitField("Return to Home Page")
+#class ReturnForm(FlaskForm):
+#    submit = SubmitField("Return to Home Page")
+
+class AddTodoItem(FlaskForm):
+    content = StringField('Todo Item Content', validators=[DataRequired()])
+    submit = SubmitField('Add Todo Item')
+    
+class ClearTodoList(FlaskForm):
+    confirm = BooleanField("I'm sure")
+    submit = SubmitField('Clear Todo List')
+
 
 class RegisterForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])

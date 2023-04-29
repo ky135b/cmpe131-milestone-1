@@ -1,24 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
- <h1> ToDo List Page </h1>
-  <body>
-    <div class="container">
-      <div class="input-container">
-        <input id="input" placeholder="add new task"/>
-        <button id="add-button">add</button>
-      </div>
-      <div class="list-container">
-        <h1>Todo list </h1>
-        <ul id="list">
-          <li class="list-item">task1</li>
-          <li class="list-item">task2</li>
-        </ul>
-      </div>
-    </div>
-    <form action="" method="post" novalidate>
-        {{form.hidden_tag()}}
-        <p>{{ form.submit() }} </p>
-    </form>
-  </body>
-  {% include "login_footer.html" %}
-  {% endblock %}
+<h1>Todo List</h1>
+{% if not emptyList %}
+<ul>
+    {% for item in items %}
+      <span style="color: blue;">  <li>{{ item.content }} </li> </span>
+    {% endfor %}
+</ul>
+{% endif %}
+<a href="{{ url_for('todoAdd') }}">Click here to add todo list items!</a>
+
+<form action="" method="POST" novalidate>
+  {{form.hidden_tag()}}
+  <p>Clear Todo List? This cannot be reversed.<br>{{form.confirm}}{{form.confirm.label}}
+     <br>
+  {{form.submit()}}
+  </p>
+</form>
+
+{% include "login_footer.html" %}
+{% endblock %}
