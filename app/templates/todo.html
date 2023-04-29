@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-
+<h1>Todo List</h1>
 {% if not emptyList %}
 <ul>
     {% for item in items %}
@@ -9,6 +9,14 @@
 </ul>
 {% endif %}
 <a href="{{ url_for('todoAdd') }}">Click here to add todo list items!</a>
+
+<form action="" method="POST" novalidate>
+  {{form.hidden_tag()}}
+  <p>Clear Todo List? This cannot be reversed.<br>{{form.confirm}}{{form.confirm.label}}
+     <br>
+  {{form.submit()}}
+  </p>
+</form>
 
 {% include "login_footer.html" %}
 {% endblock %}

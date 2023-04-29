@@ -1,7 +1,7 @@
 from flask import render_template
 from flask import redirect
 from flask import flash
-from .forms import LoginForm, LogoutForm, TodoForm, RegisterForm, DeleteAccountForm, AddTodoItem #ReturnForm
+from .forms import LoginForm, LogoutForm, TodoForm, RegisterForm, DeleteAccountForm, AddTodoItem, ClearTodoList #ReturnForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User, TodoItem
 from app import myapp_obj
@@ -65,6 +65,7 @@ def todo():
     if not current_user.is_authenticated: 
         flash("You aren't logged in yet!")
         return redirect('/')
+    form = ClearTodoList()
     #form = ReturnForm()
     #if form.validate_on_submit():
 #        flash('validate')
@@ -72,7 +73,17 @@ def todo():
     noItems = False
     todoItems = TodoItem.query.filter_by(username = current_user.username)
     if todoItems is None: noItems = True
-    return render_template('todo.html', items = todoItems, emptyList = noItems)
+    if form.validate_on_submit():
+        if not form.confirm.data:
+            flash("Please confirm that you want to clear your todo list before pressing the Clear Todo List button!")
+            return redirect('/todo')
+        else:
+            for item in todoItems:
+                db.session.delete(item)
+            db.session.commit()
+            flash("Your Todo List has been cleared!")
+            return redirect('/todo')
+    return render_template('todo.html', items = todoItems, emptyList = noItems, form=form)
 @myapp_obj.route("/todoAdd", methods=['GET', 'POST'])
 def todoAdd():
     if not current_user.is_authenticated: 
