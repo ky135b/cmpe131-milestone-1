@@ -100,9 +100,8 @@ def delete():
             return redirect("/delete")
     return render_template('delete.html', title = 'Logout Confirmation', form = form)
 @myapp_obj.route("/chat", methods=['POST', 'GET'])
-def logout():
+def chat():
     return render_template('chat.html', title = 'Chat')
-
 @myapp_obj.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated: 
