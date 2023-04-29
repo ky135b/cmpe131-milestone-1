@@ -22,6 +22,10 @@ class TodoForm(FlaskForm):
 class LogoutForm(FlaskForm):
     submit = SubmitField("I'm sure - Logout")
 
+class DeleteAccountForm(FlaskForm):
+    password = StringField(validators=[DataRequired()])
+    confirm = SubmitField("Confirm Account Deletion")
+
 class ReturnForm(FlaskForm):
     submit = SubmitField("Return to Home Page")
 

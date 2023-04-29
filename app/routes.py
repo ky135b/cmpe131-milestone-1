@@ -1,7 +1,7 @@
 from flask import render_template
 from flask import redirect
 from flask import flash
-from .forms import LoginForm, LogoutForm, TodoForm, ReturnForm, RegisterForm
+from .forms import LoginForm, LogoutForm, TodoForm, ReturnForm, RegisterForm, DeleteAccountForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User
 from app import myapp_obj
@@ -81,6 +81,24 @@ def logout():
         logout_user()
         return redirect("/")
     return render_template('logout.html', title = 'Logout Confirmation', form = form)
+@myapp_obj.route("/delete", methods=['POST', 'GET'])
+def delete():
+    if not current_user.is_authenticated: 
+        flash("Please log in to the account you want to delete!")
+        return redirect('/')
+    form = DeleteAccountForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=current_user.username).first()
+        if user.check_password(form.password.data): # wrong password
+            logout_user()
+            db.session.delete(user)
+            db.session.commit()
+            flash("Your account has been successfully deleted.")
+            return redirect("/")
+        else:
+            flash("Please enter your correct password and try again!")
+            return redirect("/delete")
+    return render_template('delete.html', title = 'Logout Confirmation', form = form)
 @myapp_obj.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated: 
