@@ -1,19 +1,19 @@
 ## Functional Requirements
 
-1. [ ] Milestone 2: sending an email @n-k-leung 
-2. [ ] Milestone 3: deleting an email @n-k-leung
-3. [ ] Milestone 3: flagging an email as urgent @n-k-leung
-4. [ ] Milestone 2: clear all tasks from the todo list @rudysuarez1
-5. [ ] Milestone 3: creating a new task on the todo list @rudysuarez1
-6. [ ] Milestone 3: crossing off a task on the todo list @rudysuarez1
-7. [ ] Milestone 2: sending chat messages @rudysuarez1
-8. [x] Milestone 2: registering for the email website @n-k-leung
-9. [ ] Milestone 3: advanced search using regex @ky135b
-10. [x] Milestone 2: delete email account from email website @ky135b
-11. [ ] Milestone 3: creating an email group @ky135b
-12. [ ] Milestone 2: adding attachments in an email @ky135b
-13. [x] Milestone 2: login @n-k-leung
-14. [x] Milestone 2: logout @ky135b
+- [ ] Milestone 2: (1) sending an email @n-k-leung 
+- [ ] Milestone 3: (2) deleting an email @n-k-leung
+- [ ] Milestone 3: (3) flagging an email as urgent @n-k-leung
+- [ ] Milestone 2: (4) clear all tasks from the todo list @rudysuarez1
+- [ ] Milestone 3: (5) creating a new task on the todo list @rudysuarez1
+- [ ] Milestone 3: (6) crossing off a task on the todo list @rudysuarez1
+- [ ] Milestone 2: (7) sending chat messages @rudysuarez1
+- [x] Milestone 2: (8) registering for the email website @n-k-leung
+- [ ] Milestone 3: (9) advanced search using regex @ky135b
+- [x] Milestone 2: (10) delete email account from email website @ky135b
+- [ ] Milestone 3: (11) creating an email group @ky135b
+- [ ] Milestone 2: (12) adding attachments in an email @ky135b
+- [x] Milestone 2: (13) login @n-k-leung
+- [x] Milestone 2: (14) logout @ky135b
 
 ## Non-functional Requirements
 
