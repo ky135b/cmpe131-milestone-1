@@ -29,6 +29,10 @@ class DeleteAccountForm(FlaskForm):
 #class ReturnForm(FlaskForm):
 #    submit = SubmitField("Return to Home Page")
 
+class AddTodoItem(FlaskForm):
+    content = StringField('Todo Item Content', validators=[DataRequired()])
+    submit = SubmitField('Add Todo Item')
+
 class RegisterForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired()])

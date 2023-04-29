@@ -1,7 +1,7 @@
 from flask import render_template
 from flask import redirect
 from flask import flash
-from .forms import LoginForm, LogoutForm, TodoForm, RegisterForm, DeleteAccountForm #ReturnForm
+from .forms import LoginForm, LogoutForm, TodoForm, RegisterForm, DeleteAccountForm, AddTodoItem #ReturnForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User, TodoItem
 from app import myapp_obj
@@ -73,6 +73,18 @@ def todo():
     todoItems = TodoItem.query.filter_by(username = current_user.username)
     if todoItems is None: noItems = True
     return render_template('todo.html', items = todoItems, emptyList = noItems)
+@myapp_obj.route("/todoAdd", methods=['GET', 'POST'])
+def todoAdd():
+    if not current_user.is_authenticated: 
+        flash("You aren't logged in yet!")
+        return redirect('/')
+    form = AddTodoItem()
+    if form.validate_on_submit():
+        todo = TodoItem(content=form.content.data, username = current_user.username, completed = 0)
+        db.session.add(todo)
+        db.session.commit()
+        return redirect('/todo')
+    return render_template('todoAdd.html', form = form)
 # logout button should only appear when logged in
 @myapp_obj.route("/logout", methods=['POST', 'GET'])
 def logout():
