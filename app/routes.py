@@ -10,7 +10,7 @@ from flask_login import login_user
 from flask_login import logout_user
 from flask_login import login_required
 from . import db
-from flask_mail import Message
+from flask_mail import Mail, Message
 
 @myapp_obj.route("/", methods=['GET', 'POST'])
 @myapp_obj.route("/sign_In.html", methods=['GET', 'POST'])
@@ -39,9 +39,23 @@ def login():
 @myapp_obj.route("/index", methods=['GET', 'POST'])
 def index():
     form = TodoForm()
+    if form.todo.data:
+        return redirect('/todo')
     if form.validate_on_submit():
-#        flash('validate')
-        return redirect("/todo")
+        msg = Message(form.body.data, recipients=[form.to.data])
+        mail.send(msg)
+        sender = request.form['sender']
+        email = form.to.data['to']
+        subject = request.form['title']
+        msg = request.form['body']
+
+        message = Message(subject, sender=[sender], recipients=[email])
+        message.body = msg
+
+        #send mail
+        mail.send(message)
+        flash('sent')
+        return redirect("/index")
     return render_template('index.html', form = form)
 @myapp_obj.route("/members/<string:name>/")
 def getMember(name):
@@ -72,7 +86,6 @@ def register():
     user = User.query.filter_by(username=form.username.data).first()
     if user is not None: # if user already registered, then redirect back to sign in page
        flash('Username or email already exists')
-       # return f'''<body> username exists</body>'''
        return redirect ('/register')
     if form.validate_on_submit():
             new = User(username = form.username.data, email = form.email.data)
