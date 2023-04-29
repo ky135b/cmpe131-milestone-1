@@ -13,7 +13,7 @@ from . import db
 from flask_mail import Mail, Message
 
 @myapp_obj.route("/", methods=['GET', 'POST'])
-@myapp_obj.route("/sign_In.html", methods=['GET', 'POST'])
+@myapp_obj.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated: 
         flash("You are already logged in!")
@@ -34,7 +34,7 @@ def login():
         else:
             login_user(user)
             return redirect('/index')
-    return render_template('sign_In.html', form=form)
+    return render_template('login.html', form=form)
 @myapp_obj.route("/index", methods=['GET', 'POST'])
 def index():
     if not current_user.is_authenticated: 
