@@ -10,34 +10,45 @@ from flask_login import login_user
 from flask_login import logout_user
 from flask_login import login_required
 from . import db
+from flask_mail import Mail, Message
 
 @myapp_obj.route("/", methods=['GET', 'POST'])
 @myapp_obj.route("/sign_In.html", methods=['GET', 'POST'])
 def login():
-    # create form
     form = LoginForm()
     # if form inputs are valid
     # if clicked on register button
     if form.register.data:
        return redirect('/register') 
     if form.validate_on_submit():
-        # search database for username
-        # user = User.query.filter_by(...)
-        # check the password
-        # if password matches
         # login_user(user)
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
             #print saying not registered and empty sign in fields
+            flash('Username and email is not registered')
+            flash('To register, click the Register button')
             return redirect('/')
-        return redirect('/index')
+        else:
+            return redirect('/index')
     return render_template('sign_In.html', form=form)
 @myapp_obj.route("/index", methods=['GET', 'POST'])
 def index():
     form = TodoForm()
+    user = User.query.filter_by(username=form.sender.data).first()
+    if user is None: # check if sender email valid
+       flash('Sender email not valid')
+       return redirect ('/index')
+    user = User.query.filter_by(username=form.to.data).first()
+    if user is None: # check if recipient email is valid
+       flash('Recipient email not valid')
+       return redirect ('/index')
+    if form.todo.data: #if press todo button direct to todo list page
+        return redirect('/todo')
     if form.validate_on_submit():
-#        flash('validate')
-        return redirect("/todo")
+        msg = Message(form.title.data, sender=form.sender.data, recipients=form.to.data)
+        msg.body=form.body.data
+        flash('sent')
+        return redirect("/index")
     return render_template('index.html', form = form)
 @myapp_obj.route("/members/<string:name>/")
 def getMember(name):
@@ -67,22 +78,13 @@ def register():
        return redirect('/')
     user = User.query.filter_by(username=form.username.data).first()
     if user is not None: # if user already registered, then redirect back to sign in page
-        return redirect ('/')
+       flash('Username or email already exists')
+       return redirect ('/register')
     if form.validate_on_submit():
-            hashed_password = generate_password_hash(form.password.data, 'hash_eg')
-            new = User(username = form.username.data, email = form.email.data, password=hashed_password)
+            new = User(username = form.username.data, email = form.email.data)
+            new.set_password(form.password.data)
             db.session.add(new)
             db.session.commit()
-#    if form.validate_on_submit():
-        # search database for username
-        # user = User.query.filter_by(...)
-        # check the password
-        # if password matches
         # login_user(user)
-#        if form.password.data != confirm.repassword.data:
-#            return redirect('/register')
-#        if not form.username.data:
-#            return redirect('/register')
-#        else:
             return redirect('/')
     return render_template('register.html', form=form)

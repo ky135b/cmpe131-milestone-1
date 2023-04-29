@@ -12,7 +12,12 @@ class LoginForm(FlaskForm):
     register = SubmitField('Register')
 
 class TodoForm(FlaskForm):
-    submit = SubmitField('ToDo')
+    to = StringField('To:', validators=[DataRequired()])
+    sender = StringField('From:', validators=[DataRequired()])
+    title = StringField('Title:', validators=[DataRequired()])
+    body = StringField('Body:', validators=[DataRequired()])
+    send = SubmitField('Send Message')
+    todo = SubmitField('ToDo')
 
 class LogoutForm(FlaskForm):
     submit = SubmitField("I'm sure - Logout")
@@ -30,3 +35,4 @@ class RegisterForm(FlaskForm):
     confirm  = PasswordField('Confirm Password', [DataRequired(), EqualTo('confirm', message='Passwords must match')])
     submit = SubmitField('Submit')
     sign = SubmitField('Sign In')
+

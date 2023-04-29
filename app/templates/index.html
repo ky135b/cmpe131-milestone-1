@@ -2,7 +2,39 @@
 {% block content %}
 <h1>Email Home Page</h1>
 <form action="" method="post" novalidate>
-{{form.hidden_tag()}}
-<p>{{ form.submit() }} </p>
+    {{form.hidden_tag()}}
+    <p>{{ form.todo() }} </p>
+
+    <p> {{form.to.label}} <br>
+       {{form.to(size=32)}}
+    {%for error in form.to.errors%}
+    <span style="color: red;"> [{{error}}]</span>
+    {% endfor %}
+    </p>
+
+    <p> {{form.sender.label}} <br>
+       {{form.sender(size=32)}}
+    {%for error in form.sender.errors%}
+    <span style="color: red;"> [{{error}}]</span>
+    {% endfor %}
+    </p>
+
+    <p> {{form.title.label}} <br>
+       {{form.title(size=32)}}
+    {%for error in form.title.errors%}
+    <span style="color: red;"> [{{error}}]</span>
+    {% endfor %}
+    </p>
+
+    <p> {{form.body.label}} <br>
+       {{form.body(size=200)}}
+    {%for error in form.body.errors%}
+    <span style="color: red;"> [{{error}}]</span>
+    {% endfor %}
+    </p>
+
+    <p>{{ form.send() }} </p>
 </form>
 {% endblock %}
+
+
