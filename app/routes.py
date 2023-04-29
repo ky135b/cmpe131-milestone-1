@@ -41,6 +41,8 @@ def index():
         flash("You aren't logged in yet!")
         return redirect('/')
     form = TodoForm()
+    if form.todo.data:
+        return redirect('/todo')
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.sender.data).first()
         if user is None: # check if sender email valid
