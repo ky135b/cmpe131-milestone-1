@@ -1,3 +1,4 @@
+## Ethical Implications
 	This email application is to serve as a communication method between two or more parties. Additionally, we have created a space where users individually may 
 choose to create a todo list to keep track of their everyday tasks. With this in mind, the application is to uphold the ethical responsibilities of information retention 
 as we have a register page to first retain user information and our visual message at the bottom welcoming the user on our home and todo page. It also would uphold privacy
