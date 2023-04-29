@@ -26,8 +26,8 @@ class DeleteAccountForm(FlaskForm):
     password = StringField(validators=[DataRequired()])
     confirm = SubmitField("Confirm Account Deletion")
 
-class ReturnForm(FlaskForm):
-    submit = SubmitField("Return to Home Page")
+#class ReturnForm(FlaskForm):
+#    submit = SubmitField("Return to Home Page")
 
 class RegisterForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
