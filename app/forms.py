@@ -13,7 +13,7 @@ class LoginForm(FlaskForm):
 
 class TodoForm(FlaskForm):
     to = StringField('To:', validators=[DataRequired()], render_kw={"placeholder":"recipient@email.com"})
-    sender = StringField('From:', validators=[DataRequired()], render_kw={"placeholder":"sender@email.com"})
+#    sender = StringField('From:', validators=[DataRequired()], render_kw={"placeholder":"sender@email.com"})
     title = StringField('Title:', validators=[DataRequired()], render_kw={"placeholder":"cmpe131"})
     body = StringField('Body:', validators=[DataRequired()], render_kw={"placeholder":"Hello"})
     send = SubmitField('Send Message')

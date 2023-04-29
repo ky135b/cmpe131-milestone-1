@@ -35,15 +35,11 @@ def login():
 def index():
     form = TodoForm()
     if form.validate_on_submit():
-       # user = User.query.filter_by(username=form.sender.data).first()
-        if current_user.username != form.sender.data:
-            flash('Sender email not valid')
-            return redirect ('/index')
-        user = User.query.filter_by(username=form.to.data).first()
+        user = User.query.filter_by(email=form.to.data).first()
         if user is None: # check if recipient email is valid
             flash('Recipient email not valid')
             return redirect ('/index')
-        msg = Message(form.title.data, sender=form.sender.data, recipients=form.to.data)
+        msg = Message(form.title.data, sender=current_user.email, recipients=form.to.data)
         msg.body=form.body.data
         flash('sent')
         return redirect("/index")

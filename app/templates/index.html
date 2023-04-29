@@ -12,13 +12,6 @@
     {% endfor %}
     </p>
 
-    <p> {{form.sender.label}} <br>
-       {{form.sender(size=32)}}
-    {%for error in form.sender.errors%}
-    <span style="color: red;"> [{{error}}]</span>
-    {% endfor %}
-    </p>
-
     <p> {{form.title.label}} <br>
        {{form.title(size=32)}}
     {%for error in form.title.errors%}
