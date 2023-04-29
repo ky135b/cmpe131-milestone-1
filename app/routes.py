@@ -99,6 +99,10 @@ def delete():
             flash("Please enter your correct password and try again!")
             return redirect("/delete")
     return render_template('delete.html', title = 'Logout Confirmation', form = form)
+@myapp_obj.route("/chat", methods=['POST', 'GET'])
+def logout():
+    return render_template('chat.html', title = 'Chat')
+
 @myapp_obj.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated: 
