@@ -4,7 +4,7 @@
 - [ ] Milestone 3: (2) deleting an email @n-k-leung
 - [ ] Milestone 3: (3) flagging an email as urgent @n-k-leung
 - [ ] Milestone 2: (4) clear all tasks from the todo list @rudysuarez1
-- [ ] Milestone 3: (5) creating a new task on the todo list @rudysuarez1
+- [x] Milestone 3: (5) creating a new task on the todo list @ky135b
 - [ ] Milestone 3: (6) crossing off a task on the todo list @rudysuarez1
 - [ ] Milestone 2: (7) sending chat messages @rudysuarez1
 - [x] ~~Milestone 2: (8) registering for the email website @n-k-leung~~
