@@ -7,13 +7,13 @@
 - [ ] Milestone 3: (5) creating a new task on the todo list @rudysuarez1
 - [ ] Milestone 3: (6) crossing off a task on the todo list @rudysuarez1
 - [ ] Milestone 2: (7) sending chat messages @rudysuarez1
-- [x] Milestone 2: (8) registering for the email website @n-k-leung
+- [x] ~~Milestone 2: (8) registering for the email website @n-k-leung~~
 - [ ] Milestone 3: (9) advanced search using regex @ky135b
-- [x] Milestone 2: (10) delete email account from email website @ky135b
+- [x] ~~Milestone 2: (10) delete email account from email website @ky135b~~
 - [ ] Milestone 3: (11) creating an email group @ky135b
 - [ ] Milestone 2: (12) adding attachments in an email @ky135b
-- [x] Milestone 2: (13) login @n-k-leung
-- [x] Milestone 2: (14) logout @ky135b
+- [x] ~~Milestone 2: (13) login @n-k-leung~~
+- [x] ~~Milestone 2: (14) logout @ky135b~~
 
 ## Non-functional Requirements
 
