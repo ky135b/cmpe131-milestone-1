@@ -15,17 +15,12 @@ from flask_mail import Mail, Message
 @myapp_obj.route("/", methods=['GET', 'POST'])
 @myapp_obj.route("/sign_In.html", methods=['GET', 'POST'])
 def login():
-    # create form
     form = LoginForm()
     # if form inputs are valid
     # if clicked on register button
     if form.register.data:
        return redirect('/register') 
     if form.validate_on_submit():
-        # search database for username
-        # user = User.query.filter_by(...)
-        # check the password
-        # if password matches
         # login_user(user)
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
@@ -39,21 +34,19 @@ def login():
 @myapp_obj.route("/index", methods=['GET', 'POST'])
 def index():
     form = TodoForm()
-    if form.todo.data:
+    user = User.query.filter_by(username=form.sender.data).first()
+    if user is None: # check if sender email valid
+       flash('Sender email not valid')
+       return redirect ('/index')
+    user = User.query.filter_by(username=form.to.data).first()
+    if user is None: # check if recipient email is valid
+       flash('Recipient email not valid')
+       return redirect ('/index')
+    if form.todo.data: #if press todo button direct to todo list page
         return redirect('/todo')
     if form.validate_on_submit():
-        msg = Message(form.body.data, recipients=[form.to.data])
-        mail.send(msg)
-        sender = request.form['sender']
-        email = form.to.data['to']
-        subject = request.form['title']
-        msg = request.form['body']
-
-        message = Message(subject, sender=[sender], recipients=[email])
-        message.body = msg
-
-        #send mail
-        mail.send(message)
+        msg = Message(form.title.data, sender=form.sender.data, recipients=form.to.data)
+        msg.body=form.body.data
         flash('sent')
         return redirect("/index")
     return render_template('index.html', form = form)
@@ -92,11 +85,6 @@ def register():
             new.set_password(form.password.data)
             db.session.add(new)
             db.session.commit()
-#    if form.validate_on_submit():
-        # search database for username
-        # user = User.query.filter_by(...)
-        # check the password
-        # if password matches
         # login_user(user)
             return redirect('/')
     return render_template('register.html', form=form)

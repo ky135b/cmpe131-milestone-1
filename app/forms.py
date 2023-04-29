@@ -13,6 +13,7 @@ class LoginForm(FlaskForm):
 
 class TodoForm(FlaskForm):
     to = StringField('To:', validators=[DataRequired()])
+    sender = StringField('From:', validators=[DataRequired()])
     title = StringField('Title:', validators=[DataRequired()])
     body = StringField('Body:', validators=[DataRequired()])
     send = SubmitField('Send Message')
