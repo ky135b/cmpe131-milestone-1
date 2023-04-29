@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>{{ title }}</title>
+    </head>
+    <body>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                  <span style="color: red;">  <li>{{ message }} </li> </span>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
+        {% block content %} {% endblock %}
+    </body>
+</html>
