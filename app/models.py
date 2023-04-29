@@ -34,3 +34,10 @@ class Post(db.Model):
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
+
+class ToDo(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    task = db.Column(db.String(32), nullable=False)
+
+    def __repr__(self):
+        return f'<user {self.id}: {self.username}>'

@@ -24,7 +24,8 @@ class LogoutForm(FlaskForm):
 
 class ReturnForm(FlaskForm):
     submit = SubmitField("Return to Home Page")
-
+    task = StringField('Enter a task name', validators=[DataRequired()], render_kw={"placeholder":"taskname1"})
+    add = SubmitField('Add task')
 class RegisterForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()], render_kw={"placeholder":"usernameExample"})
     email = StringField('Email', validators=[DataRequired()], render_kw={"placeholder":"example@email.com"})

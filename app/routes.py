@@ -50,9 +50,15 @@ def getMember(name):
 @myapp_obj.route("/todo", methods=['GET', 'POST'])
 def todo():
     form = ReturnForm()
+    if form.submit.data:
+        return redirect("/index")
     if form.validate_on_submit():
 #        flash('validate')
-        return redirect("/index")
+        new = ToDo(task=form.task.data)
+        db.session.add(new)
+        db.session.commit()
+        flash("added a new task")
+        return redirect("/todo")
     return render_template('todo.html', form = form)
 # logout button should only appear when logged in
 @myapp_obj.route("/logout", methods=['POST', 'GET'])
