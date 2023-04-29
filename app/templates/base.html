@@ -13,11 +13,5 @@
             {% endif %}
         {% endwith %}
         {% block content %} {% endblock %}
-        {% if current_user.is_authenticated %}<p>
-            You are currently logged in.
-            <a href="{{ url_for('logout') }}">Click here to logout.</a>
-        {% else %}
-        You are currently logged out.
-        </p>{% endif %}
     </body>
 </html>

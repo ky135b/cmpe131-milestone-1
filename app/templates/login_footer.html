@@ -1,0 +1,7 @@
+<p>
+    {% if current_user.is_authenticated %}
+        Hi, {{ current_user.username }}! You are currently logged in.
+        <a href="{{ url_for('logout') }}">Click here to logout.</a>
+    {% else %}
+        You are currently logged out.
+{% endif %}</p>

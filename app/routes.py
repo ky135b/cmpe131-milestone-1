@@ -15,6 +15,9 @@ from flask_mail import Mail, Message
 @myapp_obj.route("/", methods=['GET', 'POST'])
 @myapp_obj.route("/sign_In.html", methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated: 
+        flash("You are already logged in!")
+        return redirect('/index')
     form = LoginForm()
     # if form inputs are valid
     # if clicked on register button
@@ -29,10 +32,14 @@ def login():
             flash('To register, click the Register button')
             return redirect('/')
         else:
+            login_user(user)
             return redirect('/index')
     return render_template('sign_In.html', form=form)
 @myapp_obj.route("/index", methods=['GET', 'POST'])
 def index():
+    if not current_user.is_authenticated: 
+        flash("You aren't logged in yet!")
+        return redirect('/')
     form = TodoForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.sender.data).first()
@@ -53,6 +60,9 @@ def getMember(name):
     return escape(name)
 @myapp_obj.route("/todo", methods=['GET', 'POST'])
 def todo():
+    if not current_user.is_authenticated: 
+        flash("You aren't logged in yet!")
+        return redirect('/')
     form = ReturnForm()
     if form.validate_on_submit():
 #        flash('validate')
@@ -61,6 +71,9 @@ def todo():
 # logout button should only appear when logged in
 @myapp_obj.route("/logout", methods=['POST', 'GET'])
 def logout():
+    if not current_user.is_authenticated: 
+        flash("You're already logged out!")
+        return redirect('/')
     form = LogoutForm()
     if form.validate_on_submit():
         logout_user()
@@ -68,6 +81,9 @@ def logout():
     return render_template('logout.html', title = 'Logout Confirmation', form = form)
 @myapp_obj.route("/register", methods=['GET', 'POST'])
 def register():
+    if current_user.is_authenticated: 
+        flash("You are already logged in!")
+        return redirect('/index')
     # create form
     form = RegisterForm()
     # if form inputs are valid
@@ -84,5 +100,6 @@ def register():
             db.session.add(new)
             db.session.commit()
         # login_user(user)
+            flash("Account created!")
             return redirect('/')
     return render_template('register.html', form=form)
