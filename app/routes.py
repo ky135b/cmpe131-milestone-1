@@ -34,17 +34,15 @@ def login():
 @myapp_obj.route("/index", methods=['GET', 'POST'])
 def index():
     form = TodoForm()
-    user = User.query.filter_by(username=form.sender.data).first()
-    if user is None: # check if sender email valid
-       flash('Sender email not valid')
-       return redirect ('/index')
-    user = User.query.filter_by(username=form.to.data).first()
-    if user is None: # check if recipient email is valid
-       flash('Recipient email not valid')
-       return redirect ('/index')
-    if form.todo.data: #if press todo button direct to todo list page
-        return redirect('/todo')
     if form.validate_on_submit():
+        user = User.query.filter_by(username=form.sender.data).first()
+        if user is None: # check if sender email valid
+            flash('Sender email not valid')
+            return redirect ('/index')
+        user = User.query.filter_by(username=form.to.data).first()
+        if user is None: # check if recipient email is valid
+            flash('Recipient email not valid')
+            return redirect ('/index')
         msg = Message(form.title.data, sender=form.sender.data, recipients=form.to.data)
         msg.body=form.body.data
         flash('sent')
