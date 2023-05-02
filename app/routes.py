@@ -1,16 +1,16 @@
 from flask import render_template
 from flask import redirect
 from flask import flash
-from .forms import LoginForm, LogoutForm, TodoForm, RegisterForm, DeleteAccountForm, AddTodoItem, ClearTodoList #ReturnForm
+from .forms import LoginForm, LogoutForm, HomeForm, RegisterForm, DeleteAccountForm, AddTodoItem, ClearTodoList #ReturnForm
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import User, TodoItem
+from .models import User, TodoItem, Message
 from app import myapp_obj
 from flask_login import current_user
 from flask_login import login_user
 from flask_login import logout_user
 from flask_login import login_required
 from . import db
-from flask_mail import Mail, Message
+# from flask_mail import Mail, Message
 
 @myapp_obj.route("/", methods=['GET', 'POST'])
 @myapp_obj.route("/login", methods=['GET', 'POST'])
@@ -40,23 +40,23 @@ def index():
     if not current_user.is_authenticated: 
         flash("You aren't logged in yet!")
         return redirect('/')
-    form = TodoForm()
+    form = HomeForm()
     if form.todo.data:
         return redirect('/todo')
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.sender.data).first()
-        if user is None: # check if sender email valid
-            flash('Sender email not valid')
-            return redirect ('/index')
         user = User.query.filter_by(username=form.to.data).first()
         if user is None: # check if recipient email is valid
             flash('Recipient email not valid')
             return redirect ('/index')
-        msg = Message(form.title.data, sender=form.sender.data, recipients=form.to.data)
-        msg.body=form.body.data
+        message = Message(recipient=form.to.data, subject=form.title.data, body=form.body.data, username = current_user.username)
+        receiving_user=User.query.filter_by(username=form.to.data).first().id
+        db.session.add(message)
+        db.session.commit()
         flash('sent')
         return redirect("/index")
-    return render_template('index.html', form = form)
+    messages = Message.query.filter_by(id=current_user.id).all()
+   # messages = Message.query.filter_by(username=current_user.username)
+    return render_template('index.html', form = form, messages=messages)
 @myapp_obj.route("/members/<string:name>/")
 def getMember(name):
     return escape(name)

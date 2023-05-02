@@ -12,13 +12,6 @@
     {% endfor %}
     </p>
 
-    <p> {{form.sender.label}} <br>
-       {{form.sender(size=32)}}
-    {%for error in form.sender.errors%}
-    <span style="color: red;"> [{{error}}]</span>
-    {% endfor %}
-    </p>
-
     <p> {{form.title.label}} <br>
        {{form.title(size=32)}}
     {%for error in form.title.errors%}
@@ -34,6 +27,29 @@
     </p>
 
     <p>{{ form.send() }} </p>
+
+    {% for message in messages %}
+            <div class="message">
+                <p>Subject: {{ message.subject }}</p>
+                <p>Message: {{ message.body }}</p>
+            </div>
+    {% endfor %}
+
 </form>
+<body>
+    <p>Inbox</p>
+    </p>
+    {% if messages %}
+    {% for message in messages %}
+            <div class="message">
+                <p>Subject: {{ message.subject }}</p>
+                <p>Message: {{ message.body }}</p>
+            </div>
+    {% endfor %}
+{% else %}
+    <p>No messages received.</p>
+{% endif %}
+
+</body>
 {% include "login_footer.html" %}
 {% endblock %}

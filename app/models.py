@@ -40,6 +40,15 @@ class TodoItem(db.Model):
     def __repr__(self):
         return f'<TodoItem {self.id}: {self.content} {self.completed}>'
 
+class Message(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    recipient = db.Column(db.String(250), nullable=True)
+    subject = db.Column(db.String(250), nullable=False)
+    body = db.Column(db.String(5000))
+    username = db.Column(db.String(32), nullable=False)
+    def repr(self):
+        return f'{self.id} : {self.subject}'
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
