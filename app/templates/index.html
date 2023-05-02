@@ -34,6 +34,7 @@
     {% if messages %}
     {% for message in messages %}
             <div class="message">
+                <p>From: {{ message.recipient }}</p>
                 <p>Subject: {{ message.subject }}</p>
                 <p>Message: {{ message.body }}</p>
             </div>

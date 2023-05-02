@@ -44,12 +44,11 @@ def index():
     if form.todo.data:
         return redirect('/todo')
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.to.data).first()
+        user = User.query.filter_by(email=form.to.data).first()
         if user is None: # check if recipient email is valid
             flash('Recipient email not valid')
             return redirect ('/index')
         message = Message(recipient=form.to.data, subject=form.title.data, body=form.body.data, username = current_user.username)
-        receiving_user=User.query.filter_by(username=form.to.data).first().id
         db.session.add(message)
         db.session.commit()
         flash('sent')
