@@ -28,17 +28,9 @@
 
     <p>{{ form.send() }} </p>
 
-    {% for message in messages %}
-            <div class="message">
-                <p>Subject: {{ message.subject }}</p>
-                <p>Message: {{ message.body }}</p>
-            </div>
-    {% endfor %}
-
 </form>
 <body>
     <p>Inbox</p>
-    </p>
     {% if messages %}
     {% for message in messages %}
             <div class="message">

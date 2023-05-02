@@ -54,7 +54,7 @@ def index():
         db.session.commit()
         flash('sent')
         return redirect("/index")
-    messages = Message.query.filter_by(id=current_user.id).all()
+    messages = Message.query.filter_by(username=current_user.username)
    # messages = Message.query.filter_by(username=current_user.username)
     return render_template('index.html', form = form, messages=messages)
 @myapp_obj.route("/members/<string:name>/")

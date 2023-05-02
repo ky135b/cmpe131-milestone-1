@@ -40,7 +40,7 @@ class TodoItem(db.Model):
     def __repr__(self):
         return f'<TodoItem {self.id}: {self.content} {self.completed}>'
 
-class Message(db.Model, UserMixin):
+class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     recipient = db.Column(db.String(250), nullable=True)
     subject = db.Column(db.String(250), nullable=False)
