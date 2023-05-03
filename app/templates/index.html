@@ -33,7 +33,7 @@
 <h2>Inbox</h2>
 <body>
     {%for email in emails%}
-    <p>From:{{ email.username}}</p>
+    <p>From:{{ email.recipient}}</p>
     <p>Subject:{{ email.subject}}</p>
     <p>Body:{{ email.body}}</p>
     {% endfor %}

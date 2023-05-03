@@ -44,16 +44,16 @@ def index():
     if form.todo.data:
         return redirect('/todo')
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.recipient.data)
+        user = User.query.filter_by(email=form.recipient.data).first()
         if user is None: # check if recipient email is valid
             flash('Recipient email not valid')
             return redirect ('/index')
-        email = Email(subject = form.subject.data, recipient=form.recipient.data, body = form.body.data, id =current_user.id)
+        email = Email(subject = form.subject.data, recipient=form.recipient.data, body = form.body.data, username =current_user.username)
         db.session.add(email)
         db.session.commit()
         flash('sent')
         return redirect("/index")
-    emails = Email.query.filter_by(id = current_user.id)
+    emails = Email.query.filter_by(username = current_user.username)
     return render_template('index.html', form = form, emails = emails)
 @myapp_obj.route("/members/<string:name>/")
 def getMember(name):
