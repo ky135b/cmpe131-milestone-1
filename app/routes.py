@@ -126,3 +126,24 @@ def register():
             flash("Account created!")
             return redirect('/')
     return render_template('register.html', form=form)
+
+@myapp_obj.route('/send_message/<recipient>', methods=['GET', 'POST'])
+@login_required
+def send_message(recipient):
+    user = User.query.filter_by(username=recipient).first_or_404()
+    form = MessageForm()
+    if form.validate_on_submit():
+        msg = Message(author=current_user, recipient=user, body=form.message.data)
+        db.session.add(msg)
+        db.session.commit()
+        flash('Your message has been sent.')
+        return redirect(url_for('user_profile', username=recipient))
+    return render_template('send_message.html', title='Send Message', form=form, recipient=recipient)
+
+@myapp_obj.route('/messages')
+#@login_required
+def messages():
+    current_user.last_message_read_time = datetime.utcnow()
+    db.session.commit()
+    messages = current_user.received_messages.order_by(Message.timestamp.desc())
+    return render_template('messages.html', messages=messages)
