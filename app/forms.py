@@ -11,10 +11,9 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')
     register = SubmitField('Register')
 
-class TodoForm(FlaskForm):
-    to = StringField('To:', validators=[DataRequired()])
-    sender = StringField('From:', validators=[DataRequired()])
-    title = StringField('Title:', validators=[DataRequired()])
+class HomeForm(FlaskForm):
+    recipient = StringField('To:', validators=[DataRequired()])
+    subject = StringField('Subject:', validators=[DataRequired()])
     body = StringField('Body:', validators=[DataRequired()])
     send = SubmitField('Send Message')
     todo = SubmitField('ToDo')

@@ -5,23 +5,16 @@
     {{form.hidden_tag()}}
     <p>{{ form.todo() }} </p>
 
-    <p> {{form.to.label}} <br>
-       {{form.to(size=32)}}
-    {%for error in form.to.errors%}
+    <p> {{form.recipient.label}} <br>
+       {{form.recipient(size=32)}}
+    {%for error in form.recipient.errors%}
     <span style="color: red;"> [{{error}}]</span>
     {% endfor %}
     </p>
 
-    <p> {{form.sender.label}} <br>
-       {{form.sender(size=32)}}
-    {%for error in form.sender.errors%}
-    <span style="color: red;"> [{{error}}]</span>
-    {% endfor %}
-    </p>
-
-    <p> {{form.title.label}} <br>
-       {{form.title(size=32)}}
-    {%for error in form.title.errors%}
+    <p> {{form.subject.label}} <br>
+       {{form.subject(size=32)}}
+    {%for error in form.subject.errors%}
     <span style="color: red;"> [{{error}}]</span>
     {% endfor %}
     </p>
@@ -35,5 +28,15 @@
 
     <p>{{ form.send() }} </p>
 </form>
+
+
+<h2>Inbox</h2>
+<body>
+    {%for email in emails%}
+    <p>From:{{ email.username}}</p>
+    <p>Subject:{{ email.subject}}</p>
+    <p>Body:{{ email.body}}</p>
+    {% endfor %}
+</body>
 {% include "login_footer.html" %}
 {% endblock %}

@@ -39,6 +39,14 @@ class TodoItem(db.Model):
     
     def __repr__(self):
         return f'<TodoItem {self.id}: {self.content} {self.completed}>'
+class Email(db.Model):
+   id = db.Column(db.Integer, primary_key=True)
+   recipient = db.Column(db.String(32), nullable = False)
+   subject = db.Column(db.String(32), nullable = False)
+   body = db.Column(db.String(32), nullable = False)
+
+   def __repr__(self):
+        return f'<Email {self.id}: {self.subject} {self.body}>'
 
 @login.user_loader
 def load_user(id):
