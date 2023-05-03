@@ -44,7 +44,7 @@ class Email(db.Model):
    recipient = db.Column(db.String(32), nullable = False)
    subject = db.Column(db.String(32), nullable = False)
    body = db.Column(db.String(32), nullable = False)
-   username = db.Column(db.String(32), nullable =False)
+   sender = db.Column(db.String(32), nullable =False)
    def __repr__(self):
         return f'<Email {self.id}: {self.subject} {self.body}>'
 

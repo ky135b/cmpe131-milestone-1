@@ -1,5 +1,5 @@
 from app import myapp_obj, db
-myapp_obj.run(debug=True)
-
 with myapp_obj.app_context():
+    db.drop_all()
     db.create_all()
+myapp_obj.run(debug=True)
