@@ -1,9 +1,9 @@
 from flask import render_template
 from flask import redirect
 from flask import flash
-from .forms import LoginForm, LogoutForm, TodoForm, RegisterForm, DeleteAccountForm, AddTodoItem, ClearTodoList #ReturnForm
+from .forms import LoginForm, LogoutForm, HomeForm, RegisterForm, DeleteAccountForm, AddTodoItem, ClearTodoList #ReturnForm
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import User, TodoItem
+from .models import User, TodoItem, Email
 from app import myapp_obj
 from flask_login import current_user
 from flask_login import login_user
@@ -40,23 +40,21 @@ def index():
     if not current_user.is_authenticated: 
         flash("You aren't logged in yet!")
         return redirect('/')
-    form = TodoForm()
+    form = HomeForm()
     if form.todo.data:
         return redirect('/todo')
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.sender.data).first()
-        if user is None: # check if sender email valid
-            flash('Sender email not valid')
-            return redirect ('/index')
-        user = User.query.filter_by(username=form.to.data).first()
+        user = User.query.filter_by(email=form.recipient.data).first()
         if user is None: # check if recipient email is valid
             flash('Recipient email not valid')
             return redirect ('/index')
-        msg = Message(form.title.data, sender=form.sender.data, recipients=form.to.data)
-        msg.body=form.body.data
-        flash('sent')
+        email = Email(subject = form.subject.data, recipient=form.recipient.data, body = form.body.data, sender =current_user.email)
+        db.session.add(email)
+        db.session.commit()
+        flash('Email sent!')
         return redirect("/index")
-    return render_template('index.html', form = form)
+    emails = Email.query.filter_by(recipient = current_user.email)
+    return render_template('index.html', form = form, emails = emails)
 @myapp_obj.route("/members/<string:name>/")
 def getMember(name):
     return escape(name)

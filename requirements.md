@@ -1,6 +1,6 @@
 ## Functional Requirements
 
-- [ ] Milestone 2: (1) sending an email @n-k-leung 
+- [x]~~Milestone 2: (1) sending an email @n-k-leung~~ 
 - [ ] Milestone 3: (2) deleting an email @n-k-leung
 - [ ] Milestone 3: (3) flagging an email as urgent @n-k-leung
 - [x] ~~Milestone 2: (4) clear all tasks from the todo list @ky135b~~
