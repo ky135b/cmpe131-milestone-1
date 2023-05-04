@@ -1,4 +1,4 @@
-## Functional Requirements
+ter ## Functional Requirements
 
 - [x]~~Milestone 2: (1) sending an email @n-k-leung~~ 
 - [ ] Milestone 3: (2) deleting an email @n-k-leung
