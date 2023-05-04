@@ -18,4 +18,3 @@ pip3 install flask_mail
 
 ## Usage
 To run the project, clone the repository and run `python3 run.py`.
-
