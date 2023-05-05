@@ -46,6 +46,8 @@ class Email(db.Model):
    subject = db.Column(db.String(32), nullable = False)
    body = db.Column(db.String(32), nullable = False)
    sender = db.Column(db.String(32), nullable =False)
+   file = db.Column(db.String(50))
+   data = db.Column(db.LargeBinary)
    def __repr__(self):
         return f'<Email {self.id}: {self.subject} {self.body}>'
 

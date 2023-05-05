@@ -25,7 +25,12 @@
     <span style="color: red;"> [{{error}}]</span>
     {% endfor %}
     </p>
-
+    <form method="POST" enctype="multipart/form-data" action="/index">
+        <input type="file" name="file" accept=".png">
+        <input type="submit" value="Submit">
+    </form>
+  <img src="{{ f }}" width="500" height="400">
+  <br>
     <p>{{ form.send() }} </p>
 
 
@@ -36,6 +41,7 @@
     <p>From:{{ email.sender}}</p>
     <p>Subject:{{ email.subject}}</p>
     <p>Body:{{ email.body}}</p>
+    <a href="download/{{ email.id }}">Image</a>
     <a href="delEmail/{{ email.id }}">Delete Email</a>
     {% endfor %}
 {%else%}

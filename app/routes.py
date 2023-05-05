@@ -1,6 +1,6 @@
 from flask import render_template
-from flask import redirect
-from flask import flash
+from flask import redirect, request
+from flask import flash, send_file
 from .forms import LoginForm, LogoutForm, HomeForm, RegisterForm, DeleteAccountForm, AddTodoItem, ClearTodoList #ReturnForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User, TodoItem, Email
@@ -11,7 +11,9 @@ from flask_login import logout_user
 from flask_login import login_required
 from . import db
 from flask_mail import Mail, Message
-
+from werkzeug.utils import secure_filename
+# # Define allowed files
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 @myapp_obj.route("/", methods=['GET', 'POST'])
 @myapp_obj.route("/login", methods=['GET', 'POST'])
 def login():
@@ -48,13 +50,22 @@ def index():
         if user is None: # check if recipient email is valid
             flash('Recipient email not valid')
             return redirect ('/index')
-        email = Email(subject = form.subject.data, recipient=form.recipient.data, body = form.body.data, sender =current_user.email)
-        db.session.add(email)
-        db.session.commit()
-        flash('Email sent!')
-        return redirect("/index")
+        if request.form == 'POST':
+            file = request.files['file']
+           # file.save(secure_filename(file.filename))
+           # flash( 'file uploaded successfully')
+            email = Email(subject = form.subject.data, recipient=form.recipient.data, body = form.body.data, sender =current_user.email, file = file.filename, data=file.read())
+            db.session.add(email)
+            db.session.commit()
+            flash('Email sent!')
+            return redirect("/index")
     emails = Email.query.filter_by(recipient = current_user.email)
     return render_template('index.html', form = form, emails = emails)
+@myapp_obj.route('/download/<int:id>')
+def download(id):
+    img = Email.query.filter_by(id=id).first()
+    return send_file(BytesIO(img.data),
+                     download_name=img.file, as_attachment=True)
 @myapp_obj.route("/delEmail/<int:id>")
 def delEmail(id): #get email id of the email that is choosen to be deleted
     if not current_user.is_authenticated:
