@@ -27,16 +27,21 @@
     </p>
 
     <p>{{ form.send() }} </p>
-</form>
 
 
 <h2>Inbox</h2>
 <body>
+{%if emails%}
     {%for email in emails%}
     <p>From:{{ email.sender}}</p>
     <p>Subject:{{ email.subject}}</p>
     <p>Body:{{ email.body}}</p>
+    <a href="delEmail/{{ email.id }}">Delete Email</a>
     {% endfor %}
+{%else%}
+    <p>You have currently have no emails<p>
+{%endif%}
 </body>
+</form>
 {% include "login_footer.html" %}
 {% endblock %}
