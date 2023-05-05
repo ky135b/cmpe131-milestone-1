@@ -55,6 +55,18 @@ def index():
         return redirect("/index")
     emails = Email.query.filter_by(recipient = current_user.email)
     return render_template('index.html', form = form, emails = emails)
+@myapp_obj.route("/delEmail/<int:id>")
+def delEmail(id): #get email id of the email that is choosen to be deleted
+    if not current_user.is_authenticated:
+        flash("You aren't logged in yet!")
+        return redirect('/')
+    else: 
+         email = Email.query.get(id)
+         db.session.delete(email)
+         db.session.commit()
+         flash('Email deleted')
+         return redirect("/index")
+    return render_template('deleteEmail.html', form = form)
 @myapp_obj.route("/members/<string:name>/")
 def getMember(name):
     return escape(name)

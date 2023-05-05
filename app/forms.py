@@ -15,9 +15,11 @@ class HomeForm(FlaskForm):
     recipient = StringField('To:', validators=[DataRequired()])
     subject = StringField('Subject:', validators=[DataRequired()])
     body = StringField('Body:', validators=[DataRequired()])
-    send = SubmitField('Send Message')
+    send = SubmitField('Send Email')
     todo = SubmitField('ToDo')
-
+#deleteEmail form might be removed if choose to not make delete email a button
+class DeleteEmail(FlaskForm):
+    delete = SubmitField('Delete Email')
 class LogoutForm(FlaskForm):
     submit = SubmitField("I'm sure - Logout")
 
