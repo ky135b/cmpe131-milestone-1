@@ -126,8 +126,14 @@ def delete():
     if form.validate_on_submit():
         user = User.query.filter_by(username=current_user.username).first()
         if user.check_password(form.password.data): # wrong password
+            todoItems = TodoItem.query.filter_by(username = current_user.username)
+            emails = Email.query.filter_by(recipient = current_user.email)
             logout_user()
             db.session.delete(user)
+            for item in todoItems:
+                db.session.delete(item)
+            for email in emails:
+                db.session.delete(email)
             db.session.commit()
             flash("Your account has been successfully deleted.")
             return redirect("/")
