@@ -74,10 +74,22 @@
   - Ky will modify requirements.md to be consistent with the revision feedback from milestone 1.
 - Summary: The group reassigned which requirements belong to which member, reviewed the processes for adding pages and features to the project, and split up the work for the ethics writeup.
 
-### 2023-05-03 at 2:30 PM
+### 2023-05-04 at 2:30 PM
+- Attended: Ky, Natalie, Rudy
+- Updates:
+  - Group reorganized requirements between each member from remaining requirements:
+    - Ky will complete requirements 9 and 11.
+    - Natalie will complete requirements 2 and 12.
+    - Rudy will complete requirements 3, 6, and 7.
+  - Group has already completed requirements 1, 2, 8, and 13 (Natalie) and 4, 5, 10, and 14 (Ky).
+  - Group discussed possible revision of milestone 2. Since no feedback was given at the time, we decided to focus on finishing the 8 requirements needed for a high pass so we can be ready to revise, and work n more changes once feedback is given.
+  - After basic requirements are finished, each member should then finish their other requirements as soon as possible, to help fulfill the requirements for a high pass for milestone 3.
+  - After all requirements are implemented, each member will work on the remaining aspects of milestone 3 as a team (test cases, bootstrap, documentation, comments).
+  - Two additional meetings were planned to check progress and work together as needed.
+- Summary: The team reassigned which requirements of those left belong to which member, reviewed the requirements for milestone 2 and 3, planned the revision of milestone 2 (if needed after feedback is given), and planned two additional meetings before the final weekly meeting.
 
-### 2023-05-10 at 2:30 PM
+### 2023-05-07 at 12:00 PM
 
-### 2023-05-17 at 2:30 PM
+### 2023-05-09 at 12:00 PM
 
-### YYYY-MM-DD at HH:MM AM/PM
+### 2023-05-11 at 2:20 PM
