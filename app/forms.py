@@ -11,14 +11,15 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')
     register = SubmitField('Register')
 
-class TodoForm(FlaskForm):
-    to = StringField('To:', validators=[DataRequired()])
-    sender = StringField('From:', validators=[DataRequired()])
-    title = StringField('Title:', validators=[DataRequired()])
+class HomeForm(FlaskForm):
+    recipient = StringField('To:', validators=[DataRequired()])
+    subject = StringField('Subject:', validators=[DataRequired()])
     body = StringField('Body:', validators=[DataRequired()])
-    send = SubmitField('Send Message')
+    send = SubmitField('Send Email')
     todo = SubmitField('ToDo')
-
+#deleteEmail form might be removed if choose to not make delete email a button
+class DeleteEmail(FlaskForm):
+    delete = SubmitField('Delete Email')
 class LogoutForm(FlaskForm):
     submit = SubmitField("I'm sure - Logout")
 
@@ -26,8 +27,17 @@ class DeleteAccountForm(FlaskForm):
     password = StringField(validators=[DataRequired()])
     confirm = SubmitField("Confirm Account Deletion")
 
-class ReturnForm(FlaskForm):
-    submit = SubmitField("Return to Home Page")
+#class ReturnForm(FlaskForm):
+#    submit = SubmitField("Return to Home Page")
+
+class AddTodoItem(FlaskForm):
+    content = StringField('Todo Item Content', validators=[DataRequired()])
+    submit = SubmitField('Add Todo Item')
+    
+class ClearTodoList(FlaskForm):
+    confirm = BooleanField("I'm sure")
+    submit = SubmitField('Clear Todo List')
+
 
 class RegisterForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])

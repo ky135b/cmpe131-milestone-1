@@ -1,3 +1,4 @@
+### IF THIS FILE IS MODIFIED, RUN tables.py TO RECREATE TABLES
 from app import db
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -30,6 +31,23 @@ class Post(db.Model):
 
     def __repr__(self):
         return f'<Post {self.id}: {self.body}>'
+
+class TodoItem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String(256))
+    completed = db.Column(db.Integer, nullable=False)
+    username = db.Column(db.String(32), nullable=False)
+    
+    def __repr__(self):
+        return f'<TodoItem {self.id}: {self.content} {self.completed}>'
+class Email(db.Model):
+   id = db.Column(db.Integer, primary_key=True)
+   recipient = db.Column(db.String(32), nullable = False)
+   subject = db.Column(db.String(32), nullable = False)
+   body = db.Column(db.String(32), nullable = False)
+   sender = db.Column(db.String(32), nullable =False)
+   def __repr__(self):
+        return f'<Email {self.id}: {self.subject} {self.body}>'
 
 @login.user_loader
 def load_user(id):

@@ -1,9 +1,9 @@
 from flask import render_template
 from flask import redirect
 from flask import flash
-from .forms import LoginForm, LogoutForm, TodoForm, ReturnForm, RegisterForm, DeleteAccountForm
+from .forms import LoginForm, LogoutForm, HomeForm, RegisterForm, DeleteAccountForm, AddTodoItem, ClearTodoList #ReturnForm
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import User
+from .models import User, TodoItem, Email
 from app import myapp_obj
 from flask_login import current_user
 from flask_login import login_user
@@ -40,23 +40,33 @@ def index():
     if not current_user.is_authenticated: 
         flash("You aren't logged in yet!")
         return redirect('/')
-    form = TodoForm()
+    form = HomeForm()
     if form.todo.data:
         return redirect('/todo')
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.sender.data).first()
-        if user is None: # check if sender email valid
-            flash('Sender email not valid')
-            return redirect ('/index')
-        user = User.query.filter_by(username=form.to.data).first()
+        user = User.query.filter_by(email=form.recipient.data).first()
         if user is None: # check if recipient email is valid
             flash('Recipient email not valid')
             return redirect ('/index')
-        msg = Message(form.title.data, sender=form.sender.data, recipients=form.to.data)
-        msg.body=form.body.data
-        flash('sent')
+        email = Email(subject = form.subject.data, recipient=form.recipient.data, body = form.body.data, sender =current_user.email)
+        db.session.add(email)
+        db.session.commit()
+        flash('Email sent!')
         return redirect("/index")
-    return render_template('index.html', form = form)
+    emails = Email.query.filter_by(recipient = current_user.email)
+    return render_template('index.html', form = form, emails = emails)
+@myapp_obj.route("/delEmail/<int:id>")
+def delEmail(id): #get email id of the email that is choosen to be deleted
+    if not current_user.is_authenticated:
+        flash("You aren't logged in yet!")
+        return redirect('/')
+    else: 
+         email = Email.query.get(id)
+         db.session.delete(email)
+         db.session.commit()
+         flash('Email deleted')
+         return redirect("/index")
+    return render_template('deleteEmail.html', form = form)
 @myapp_obj.route("/members/<string:name>/")
 def getMember(name):
     return escape(name)
@@ -65,11 +75,37 @@ def todo():
     if not current_user.is_authenticated: 
         flash("You aren't logged in yet!")
         return redirect('/')
-    form = ReturnForm()
-    if form.validate_on_submit():
+    form = ClearTodoList()
+    #form = ReturnForm()
+    #if form.validate_on_submit():
 #        flash('validate')
-        return redirect("/index")
-    return render_template('todo.html', form = form)
+    #    return redirect("/index")
+    noItems = False
+    todoItems = TodoItem.query.filter_by(username = current_user.username)
+    if todoItems is None: noItems = True
+    if form.validate_on_submit():
+        if not form.confirm.data:
+            flash("Please confirm that you want to clear your todo list before pressing the Clear Todo List button!")
+            return redirect('/todo')
+        else:
+            for item in todoItems:
+                db.session.delete(item)
+            db.session.commit()
+            flash("Your Todo List has been cleared!")
+            return redirect('/todo')
+    return render_template('todo.html', items = todoItems, emptyList = noItems, form=form)
+@myapp_obj.route("/todoAdd", methods=['GET', 'POST'])
+def todoAdd():
+    if not current_user.is_authenticated: 
+        flash("You aren't logged in yet!")
+        return redirect('/')
+    form = AddTodoItem()
+    if form.validate_on_submit():
+        todo = TodoItem(content=form.content.data, username = current_user.username, completed = 0)
+        db.session.add(todo)
+        db.session.commit()
+        return redirect('/todo')
+    return render_template('todoAdd.html', form = form)
 # logout button should only appear when logged in
 @myapp_obj.route("/logout", methods=['POST', 'GET'])
 def logout():
@@ -99,6 +135,9 @@ def delete():
             flash("Please enter your correct password and try again!")
             return redirect("/delete")
     return render_template('delete.html', title = 'Logout Confirmation', form = form)
+@myapp_obj.route("/chat", methods=['POST', 'GET'])
+def chat():
+    return render_template('chat.html', title = 'Chat')
 @myapp_obj.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated: 
@@ -116,8 +155,10 @@ def register():
        return redirect ('/register')
     if form.validate_on_submit():
             new = User(username = form.username.data, email = form.email.data)
+            todo = TodoItem(content="This is an example todo list item! Click the checkbox to cross this off!", username = form.username.data, completed = 0)
             new.set_password(form.password.data)
             db.session.add(new)
+            db.session.add(todo)
             db.session.commit()
         # login_user(user)
             flash("Account created!")
