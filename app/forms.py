@@ -17,6 +17,7 @@ class HomeForm(FlaskForm):
     body = StringField('Body:', validators=[DataRequired()])
     send = SubmitField('Send Message')
     todo = SubmitField('ToDo')
+    chat = SubmitField('Chat')
 
 class LogoutForm(FlaskForm):
     submit = SubmitField("I'm sure - Logout")

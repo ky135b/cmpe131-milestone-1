@@ -1,4 +1,46 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Chat</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat Page</title>
+  <style>
+    /* CSS styles for the chat page */
+    #chatbox {
+      width: 400px;
+      height: 300px;
+      border: 1px solid #ccc;
+      overflow: auto;
+      padding: 10px;
+    }
+
+    #input {
+      width: 400px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Chat Page</h1>
+
+  <div id="chatbox"></div>
+
+  <input type="text" id="input" placeholder="Type your message here">
+  <button onclick="sendMessage()">Send</button>
+
+  <script>
+    function sendMessage() {
+      var input = document.getElementById("input");
+      var message = input.value;
+      if (message !== "") {
+        var chatbox = document.getElementById("chatbox");
+        chatbox.innerHTML += "<p>You: " + message + "</p>";
+        input.value = "";
+        chatbox.scrollTop = chatbox.scrollHeight;
+      }
+    }
+  </script>
+</body>
+</html>
+
 {% endblock %}

@@ -44,6 +44,8 @@ def index():
     form = HomeForm()
     if form.todo.data:
         return redirect('/todo')
+    if form.chat.data:
+        return redirect('/chat')
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.recipient.data).first()
         if user is None: # check if recipient email is valid
