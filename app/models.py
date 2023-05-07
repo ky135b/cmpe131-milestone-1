@@ -32,6 +32,20 @@ class Post(db.Model):
     def __repr__(self):
         return f'<Post {self.id}: {self.body}>'
 
+class Group(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    groupname = db.Column(db.String(32), nullable=False)
+    username = db.Column(db.String(32), nullable=False)
+    def __repr__(self):
+        return f'<Group {self.id}: {self.groupname}>'
+
+class GroupMember(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    groupid = db.Column(db.Integer, nullable=False)
+    memberemail = db.Column(db.String(32), nullable=False)
+    def __repr__(self):
+        return f'<GroupMember {self.groupname}: {self.memberemail}>'
+
 class TodoItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(256))

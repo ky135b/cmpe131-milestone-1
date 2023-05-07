@@ -1,9 +1,9 @@
 from flask import render_template
 from flask import redirect
 from flask import flash
-from .forms import LoginForm, LogoutForm, HomeForm, RegisterForm, DeleteAccountForm, AddTodoItem, ClearTodoList #ReturnForm
+from .forms import LoginForm, LogoutForm, HomeForm, RegisterForm, DeleteAccountForm, AddTodoItem, ClearTodoList, CreateGroup #ReturnForm
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import User, TodoItem, Email
+from .models import User, TodoItem, Email, Group, GroupMember
 from app import myapp_obj
 from flask_login import current_user
 from flask_login import login_user
@@ -11,6 +11,46 @@ from flask_login import logout_user
 from flask_login import login_required
 from . import db
 from flask_mail import Mail, Message
+
+@myapp_obj.route("/groups", methods=['GET', 'POST'])
+def groups():
+    if not current_user.is_authenticated: 
+        flash("You aren't logged in yet!")
+        return redirect('/')
+    emailgroups = Group.query.filter_by(username=current_user.username)
+    return render_template('groups.html', emailgroups = emailgroups)
+
+@myapp_obj.route("/groups/create", methods=['GET', 'POST'])
+def creategroup():
+    if not current_user.is_authenticated: 
+        flash("You aren't logged in yet!")
+        return redirect('/')
+    form = CreateGroup()
+    if form.validate_on_submit():
+        if Group.query.filter_by(groupname=form.groupname.data).first() is None:
+            newGroup = Group(groupname = form.groupname.data, username=current_user.username)
+            db.session.add(newGroup)
+            db.session.commit()
+            flash("Group created!")
+            return redirect("/groups")
+        else:
+            flash("That group address is taken! Try with a different address.")
+            return redirect("/groups/create")
+    return render_template('groupCreate.html', form = form)
+
+@myapp_obj.route("/groups/<int:id>", methods=['GET', 'POST'])
+def viewgroup():
+    if not current_user.is_authenticated: 
+        flash("You aren't logged in yet!")
+        return redirect('/')
+    emailid = id
+
+@myapp_obj.route("/groups/<int:id>/add", methods=['GET', 'POST'])
+def addgroupmember():
+    if not current_user.is_authenticated: 
+        flash("You aren't logged in yet!")
+        return redirect('/')
+    emailid = id
 
 @myapp_obj.route("/", methods=['GET', 'POST'])
 @myapp_obj.route("/login", methods=['GET', 'POST'])
