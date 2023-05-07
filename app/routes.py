@@ -232,7 +232,7 @@ def delete():
             for email in emails:
                 db.session.delete(email)
             for emailgroup in emailgroups:
-                groupMembers = GroupMember.query.filter(groupid = emailgroup.id)
+                groupMembers = GroupMember.query.filter_by(groupid = emailgroup.id)
                 for member in groupMembers:
                     db.session.delete(member)
                 db.session.delete(emailgroup)
