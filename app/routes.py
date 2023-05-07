@@ -1,7 +1,7 @@
 from flask import render_template
-from flask import redirect
+from flask import redirect, url_for
 from flask import flash
-from .forms import LoginForm, LogoutForm, HomeForm, RegisterForm, DeleteAccountForm, AddTodoItem, ClearTodoList, CreateGroup #ReturnForm
+from .forms import LoginForm, LogoutForm, HomeForm, RegisterForm, DeleteAccountForm, AddTodoItem, ClearTodoList, CreateGroup, AddMember #ReturnForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User, TodoItem, Email, Group, GroupMember
 from app import myapp_obj
@@ -34,23 +34,61 @@ def creategroup():
             flash("Group created!")
             return redirect("/groups")
         else:
-            flash("That group address is taken! Try with a different address.")
+            flash("That group address is taken! Try again with a different address.")
             return redirect("/groups/create")
     return render_template('groupCreate.html', form = form)
 
-@myapp_obj.route("/groups/<int:id>", methods=['GET', 'POST'])
-def viewgroup():
+@myapp_obj.route("/groups/<int:gid>", methods=['GET', 'POST'])
+def viewgroup(gid):
     if not current_user.is_authenticated: 
         flash("You aren't logged in yet!")
         return redirect('/')
-    emailid = id
+    groupCheck = Group.query.get(gid)
+    if groupCheck is None:
+        flash("Invalid group!")
+        return redirect('/groups')
+    if groupCheck.username is not current_user.username:
+        flash("You are not the owner of that group!")
+        return redirect('/groups')
+    members = GroupMember.query.filter_by(groupid = gid)
+    return render_template('groupView.html', group = groupCheck, members = members, noMembers = members is None)
 
-@myapp_obj.route("/groups/<int:id>/add", methods=['GET', 'POST'])
-def addgroupmember():
+@myapp_obj.route("/groups/<int:gid>/add", methods=['GET', 'POST'])
+def addgroupmember(gid):
     if not current_user.is_authenticated: 
         flash("You aren't logged in yet!")
         return redirect('/')
-    emailid = id
+    groupCheck = Group.query.get(gid)
+    if groupCheck is None:
+        flash("Invalid group!")
+        return redirect('/groups')
+    if groupCheck.username is not current_user.username:
+        flash("You are not the owner of that group!")
+        return redirect('/groups')
+    form = AddMember()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user is None:
+            flash("Invalid user!")
+            return redirect(url_for('addgroupmember', gid = gid))
+        else:
+            members = GroupMember.query.filter_by(groupid = gid)
+            found = False
+            if members is not None:
+                for member in members:
+                    if member.memberemail == form.email.data:
+                        found = True
+            if found:
+                flash('That email address is already in this group!')
+                return redirect(url_for('addgroupmember', gid = gid))
+            else:
+                newMember = GroupMember(groupid = gid, memberemail = form.email.data)
+                db.session.add(newMember)
+                db.session.commit()
+                flash("New member added!")
+                return redirect(url_for('viewgroup', gid = gid))
+
+    return render_template('groupAdd.html', form = form, group = groupCheck)
 
 @myapp_obj.route("/", methods=['GET', 'POST'])
 @myapp_obj.route("/login", methods=['GET', 'POST'])
@@ -168,12 +206,18 @@ def delete():
         if user.check_password(form.password.data): # wrong password
             todoItems = TodoItem.query.filter_by(username = current_user.username)
             emails = Email.query.filter_by(recipient = current_user.email)
+            emailgroups = Group.query.filter_by(username=current_user.username)
             logout_user()
             db.session.delete(user)
             for item in todoItems:
                 db.session.delete(item)
             for email in emails:
                 db.session.delete(email)
+            for emailgroup in emailgroups:
+                groupMembers = GroupMember.query.filter(groupid = emailgroup.id)
+                for member in groupMembers:
+                    db.session.delete(member)
+                db.session.delete(emailgroup)
             db.session.commit()
             flash("Your account has been successfully deleted.")
             return redirect("/")

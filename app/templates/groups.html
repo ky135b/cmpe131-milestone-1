@@ -5,7 +5,7 @@
 <a href="{{ url_for('creategroup') }}">Create New Group</a>
 <ul>
     {% for g in emailgroups %}
-      <span style="color: blue;">  <li>{{ g.groupname }}@group </li> </span>
+      <span style="color: blue;"><li><a href="{{ url_for('viewgroup', gid = g.id) }}">{{ g.groupname }}@group</a></li> </span>
     {% endfor %}
 </ul>
 <a href="{{ url_for('index') }}">Home Page</a>

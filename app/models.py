@@ -34,7 +34,7 @@ class Post(db.Model):
 
 class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    groupname = db.Column(db.String(32), nullable=False)
+    groupname = db.Column(db.String(26), nullable=False)
     username = db.Column(db.String(32), nullable=False)
     def __repr__(self):
         return f'<Group {self.id}: {self.groupname}>'

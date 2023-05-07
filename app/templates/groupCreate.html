@@ -5,7 +5,7 @@
     {{form.hidden_tag()}}
 
     <p> {{form.groupname.label}} <br>
-       {{form.groupname(size=32)}}@group
+       {{form.groupname(size=26)}}@group
     {%for error in form.groupname.errors%}
     <span style="color: red;"> [{{error}}]</span>
     {% endfor %}

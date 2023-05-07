@@ -37,7 +37,8 @@
     <p>From:{{ email.sender}}</p>
     <p>Subject:{{ email.subject}}</p>
     <p>Body:{{ email.body}}</p>
-    <a href="delEmail/{{ email.id }}">Delete Email</a>
+    <a href="{{url_for('delEmail', id = email.id)}}">Delete Email</a>
+    <!--<a href="delEmail/{{ email.id }}">Delete Email</a>-->
     {% endfor %}
 {%else%}
     <p>You have currently have no emails<p>
