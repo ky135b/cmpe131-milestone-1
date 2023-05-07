@@ -122,15 +122,33 @@ def index():
     if form.todo.data:
         return redirect('/todo')
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.recipient.data).first()
-        if user is None: # check if recipient email is valid
-            flash('Recipient email not valid')
-            return redirect ('/index')
-        email = Email(subject = form.subject.data, recipient=form.recipient.data, body = form.body.data, sender =current_user.email)
-        db.session.add(email)
-        db.session.commit()
-        flash('Email sent!')
-        return redirect("/index")
+        if form.recipient.data.endswith('@group'):
+            group = Group.query.filter_by(groupname = form.recipient.data[:-6]).first()
+            if group is None:
+                flash('Invalid email group!')
+                return redirect("/index")
+            if group.username is not current_user.username:
+                flash('You can only send emails to @group addresses you created!')
+                return redirect("/index")
+            gid = group.id
+            members = GroupMember.query.filter_by(groupid = gid)
+            if members is not None:
+                for member in members:
+                    email = Email(subject = form.subject.data, recipient=member.memberemail, body = form.body.data, sender =form.recipient.data + " (" + current_user.email +")")
+                    db.session.add(email)
+            db.session.commit()
+            flash('Email(s) sent!')
+            return redirect("/index")
+        else:
+            user = User.query.filter_by(email=form.recipient.data).first()
+            if user is None: # check if recipient email is valid
+                flash('Recipient email not valid')
+                return redirect ('/index')
+            email = Email(subject = form.subject.data, recipient=form.recipient.data, body = form.body.data, sender =current_user.email)
+            db.session.add(email)
+            db.session.commit()
+            flash('Email sent!')
+            return redirect("/index")
     emails = Email.query.filter_by(recipient = current_user.email)
     return render_template('index.html', form = form, emails = emails)
 @myapp_obj.route("/delEmail/<int:id>")
@@ -244,6 +262,9 @@ def register():
        flash('Username or email already exists')
        return redirect ('/register')
     if form.validate_on_submit():
+            if form.email.data.endswith('@group'):
+                flash("Cannot create a username ending with @group!")
+                return redirect ('/register')
             new = User(username = form.username.data, email = form.email.data)
             todo = TodoItem(content="This is an example todo list item! Click the checkbox to cross this off!", username = form.username.data, completed = 0)
             new.set_password(form.password.data)

@@ -30,7 +30,7 @@
     <p>{{ form.send() }} </p>
 
 
-<h2>Inbox</h2>
+<h2>Inbox ({{emails.all()|length}})</h2>
 <body>
 {%if emails%}
     {%for email in emails%}
