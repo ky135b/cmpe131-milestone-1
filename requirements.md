@@ -15,6 +15,7 @@
 - [x] ~~Milestone 2: (13) login @n-k-leung~~
 - [x] ~~Milestone 2: (14) logout @ky135b~~
 
+
 ## Non-functional Requirements
 
 1. email website is able to work on chromium browsers and firefox browsers
