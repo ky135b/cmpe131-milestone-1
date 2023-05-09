@@ -104,10 +104,17 @@ def login():
     if form.validate_on_submit():
         # login_user(user)
         user = User.query.filter_by(username=form.username.data).first()
-        if user is None or not user.check_password(form.password.data):
+        if user is None:
             #print saying not registered and empty sign in fields
-            flash('Username and email is not registered')
-            flash('To register, click the Register button')
+            flash('That username is not registered!')
+            flash('To register, click the Register button below.')
+            return redirect('/')
+        elif not user.check_password(form.password.data):
+            flash('Incorrect password!')
+            return redirect('/')
+        elif user.email is not form.email.data:
+            flash('That email does not match the username!')
+            flash('To register a new account, click the Register button below.')
             return redirect('/')
         else:
             login_user(user)
@@ -260,9 +267,13 @@ def register():
     #if clicked sign in button
     if form.sign.data:
        return redirect('/')
-    user = User.query.filter_by(username=form.username.data).first()
-    if user is not None: # if user already registered, then redirect back to sign in page
-       flash('Username or email already exists')
+    checkUsername = User.query.filter_by(username=form.username.data).first()
+    if checkUsername is not None: # if user already registered, then redirect back to sign in page
+       flash('That username already exists')
+       return redirect ('/register')
+    checkUsername = User.query.filter_by(email=form.email.data).first()
+    if checkUsername is not None: # if user already registered, then redirect back to sign in page
+       flash('That email already exists')
        return redirect ('/register')
     if form.validate_on_submit():
             if form.email.data.endswith('@group'):
