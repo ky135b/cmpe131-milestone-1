@@ -6,6 +6,10 @@ This email client is designed for the class project of CMPE 131 at SJSU.
 - [Contributors](#contributors)
 - [Requirements](#requirements)
 - [Usage](#usage)
+### Documentation
+- [Meeting Notes](meetings.md)
+- [Requirements](requirements.md)
+- [Ethical Implications](ethics.md)
 
 ## Contributors
 - Ky Saini (@ky135b) (Team Lead)
