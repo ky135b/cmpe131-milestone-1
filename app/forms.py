@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask import render_template
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField
 from wtforms.validators import DataRequired, EqualTo
 
 class LoginForm(FlaskForm):
@@ -17,6 +17,7 @@ class HomeForm(FlaskForm):
     body = StringField('Body:', validators=[DataRequired()])
     send = SubmitField('Send Email')
     todo = SubmitField('ToDo')
+    file = FileField('Choose File')
 #deleteEmail form might be removed if choose to not make delete email a button
 class DeleteEmail(FlaskForm):
     delete = SubmitField('Delete Email')

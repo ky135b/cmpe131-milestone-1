@@ -54,8 +54,6 @@ def index():
             return redirect ('/index')
         if request.method == "POST":
             file = request.files['file']
-           # file.save(secure_filename(file.filename))
-           # flash( 'file uploaded successfully')
             email = Email(subject = form.subject.data, recipient=form.recipient.data, body = form.body.data, sender =current_user.email, file = file.filename, data=file.read())
             db.session.add(email)
             db.session.commit()
