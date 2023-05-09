@@ -12,6 +12,8 @@ from flask_login import login_required
 from . import db
 from flask_mail import Mail, Message
 from werkzeug.utils import secure_filename
+from io import BytesIO
+
 # # Define allowed files
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 @myapp_obj.route("/", methods=['GET', 'POST'])
