@@ -13,7 +13,7 @@
 - [ ] Milestone 3: (9) advanced search using regex @ky135b [extra]
 - [x] ~~Milestone 2: (10) delete email account from email website @ky135b~~
 - [x] ~~Milestone 3: (11) creating an email group @ky135b~~
-- [ ] Milestone 3: (12) adding attachments in an email @n-k-leung
+- [x] ~~Milestone 3: (12) adding attachments in an email @n-k-leung~~
 - [x] ~~Milestone 2: (13) login @n-k-leung~~
 - [x] ~~Milestone 2: (14) logout @ky135b~~
 
