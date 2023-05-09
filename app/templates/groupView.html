@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ group.groupname }}@group Members</h1>
+{% if not noMembers %}
+<ul>
+    {% for member in members %}
+      <span style="color: blue;"><li>{{ member.memberemail }}</li> </span>
+    {% endfor %}
+</ul>
+<p><a href="{{ url_for('addgroupmember', gid = group.id) }}">Add Member</a></p>
+{% else %}
+<p>No members yet! <a href="{{ url_for('addgroupmember', gid = group.id) }}">Add Member</a></p>
+{% endif %}
+<a href="{{ url_for('groups') }}">Click here to go back to view all your groups!</a>
+{% include "login_footer.html" %}
+{% endblock %}

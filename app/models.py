@@ -9,7 +9,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), nullable=False)
     password = db.Column(db.String(32), nullable=False)
-    email = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(32), nullable=False)
 
     posts = db.relationship('Post', backref='author', lazy='dynamic')
 
@@ -32,9 +32,23 @@ class Post(db.Model):
     def __repr__(self):
         return f'<Post {self.id}: {self.body}>'
 
+class Group(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    groupname = db.Column(db.String(26), nullable=False)
+    username = db.Column(db.String(32), nullable=False)
+    def __repr__(self):
+        return f'<Group {self.id}: {self.groupname}>'
+
+class GroupMember(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    groupid = db.Column(db.Integer, nullable=False)
+    memberemail = db.Column(db.String(32), nullable=False)
+    def __repr__(self):
+        return f'<GroupMember {self.groupname}: {self.memberemail}>'
+
 class TodoItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String(256))
+    content = db.Column(db.String(200))
     completed = db.Column(db.Integer, nullable=False)
     username = db.Column(db.String(32), nullable=False)
     
@@ -44,7 +58,7 @@ class Email(db.Model):
    id = db.Column(db.Integer, primary_key=True)
    recipient = db.Column(db.String(32), nullable = False)
    subject = db.Column(db.String(32), nullable = False)
-   body = db.Column(db.String(32), nullable = False)
+   body = db.Column(db.String(200), nullable = False)
    sender = db.Column(db.String(32), nullable =False)
    file = db.Column(db.String(50), nullable = False)
    data = db.Column(db.LargeBinary, nullable = False)

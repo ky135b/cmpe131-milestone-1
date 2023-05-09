@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Create an Email Group</h1>
+<form action="" method="post" novalidate>
+    {{form.hidden_tag()}}
+
+    <p> {{form.groupname.label}} <br>
+       {{form.groupname(size=26)}}@group
+    {%for error in form.groupname.errors%}
+    <span style="color: red;"> [{{error}}]</span>
+    {% endfor %}
+    </p>
+
+    <p>{{ form.create() }} </p>
+</form>
+<a href="{{ url_for('groups') }}">Click here to go back to view all your groups!</a>
+
+{% include "login_footer.html" %}
+{% endblock %}
