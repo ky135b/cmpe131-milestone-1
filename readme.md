@@ -13,7 +13,7 @@ This email client is designed for the class project of CMPE 131 at SJSU.
 - Rudy Suarez Serrano (@rudysuarez1)
 
 ## Requirements
-# Linux/MacOS
+### Linux/MacOS
 Ensure that you have Python 3 and pip3 installed, then run following commands to make sure all required libraries are installed:
 ```
 pip3 install flask
