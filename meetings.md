@@ -1,3 +1,5 @@
+[← return to readme.md](readme.md)
+
 ## Meetings
 
 ### 2023-04-06 at 12:45 PM
@@ -89,7 +91,16 @@
 - Summary: The team reassigned which requirements of those left belong to which member, reviewed the requirements for milestone 2 and 3, planned the revision of milestone 2 (if needed after feedback is given), and planned two additional meetings before the final weekly meeting.
 
 ### 2023-05-07 at 12:00 PM
+- Attended: Ky, Natalie, Rudy
+- Updates:
+  - Clarified requirements for milestone 3.
+  - Worked together to solve issues in different requirements.
+- Summary: As the team already knew what to work towards, we continued to work toward the project goals and helped each other as issues came up.
 
-### 2023-05-09 at 12:00 PM
+### 2023-05-09 at 9:00 PM
+- Attended: Ky, Natalie, Rudy
+- Updates:
+  - Continued to work together to solve issues in different requirements.
+- Summary: As the team already knew what to work towards, we continued to work toward the project goals and helped each other as issues came up.
 
 ### 2023-05-11 at 2:20 PM
