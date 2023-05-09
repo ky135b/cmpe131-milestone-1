@@ -4,9 +4,9 @@
 <form action="" method="POST" novalidate>
     {{form.hidden_tag()}}
     <p> {{form.content.label}}
-       {{form.content}}
+       {{form.content(size=200)}}</br>
     {%for error in form.content.errors%}
-    <span style="color: red;"> [{{error}}]</span>
+    <span style="color: red;"> [{{error}}]</span></br>
     {% endfor %}
     {{form.submit()}}
     </p>

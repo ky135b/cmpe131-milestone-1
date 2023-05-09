@@ -47,7 +47,7 @@ def viewgroup(gid):
     if groupCheck is None:
         flash("Invalid group!")
         return redirect('/groups')
-    if groupCheck.username is not current_user.username:
+    if groupCheck.username != current_user.username:
         flash("You are not the owner of that group!")
         return redirect('/groups')
     members = GroupMember.query.filter_by(groupid = gid)
@@ -62,7 +62,7 @@ def addgroupmember(gid):
     if groupCheck is None:
         flash("Invalid group!")
         return redirect('/groups')
-    if groupCheck.username is not current_user.username:
+    if groupCheck.username != current_user.username:
         flash("You are not the owner of that group!")
         return redirect('/groups')
     form = AddMember()
@@ -112,7 +112,8 @@ def login():
         elif not user.check_password(form.password.data):
             flash('Incorrect password!')
             return redirect('/')
-        elif user.email is not form.email.data:
+        elif user.email != form.email.data:
+            flash(user.email + " " + form.email.data)
             flash('That email does not match the username!')
             flash('To register a new account, click the Register button below.')
             return redirect('/')
@@ -134,7 +135,7 @@ def index():
             if group is None:
                 flash('Invalid email group!')
                 return redirect("/index")
-            if group.username is not current_user.username:
+            if group.username != current_user.username:
                 flash('You can only send emails to @group addresses you created!')
                 return redirect("/index")
             gid = group.id

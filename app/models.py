@@ -9,7 +9,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), nullable=False)
     password = db.Column(db.String(32), nullable=False)
-    email = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(32), nullable=False)
 
     posts = db.relationship('Post', backref='author', lazy='dynamic')
 
@@ -48,7 +48,7 @@ class GroupMember(db.Model):
 
 class TodoItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String(256))
+    content = db.Column(db.String(200))
     completed = db.Column(db.Integer, nullable=False)
     username = db.Column(db.String(32), nullable=False)
     
@@ -58,7 +58,7 @@ class Email(db.Model):
    id = db.Column(db.Integer, primary_key=True)
    recipient = db.Column(db.String(32), nullable = False)
    subject = db.Column(db.String(32), nullable = False)
-   body = db.Column(db.String(32), nullable = False)
+   body = db.Column(db.String(200), nullable = False)
    sender = db.Column(db.String(32), nullable =False)
    def __repr__(self):
         return f'<Email {self.id}: {self.subject} {self.body}>'
