@@ -3,6 +3,14 @@ from flask import render_template
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, EqualTo
 
+class CreateGroup(FlaskForm):
+    groupname = StringField('Group Address', validators=[DataRequired()])
+    create = SubmitField('Create')
+
+class AddMember(FlaskForm):
+    email = StringField('Email', validators=[DataRequired()])
+    add = SubmitField('Add Member')
+
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired()])
