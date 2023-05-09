@@ -225,6 +225,7 @@ def delete():
             todoItems = TodoItem.query.filter_by(username = current_user.username)
             emails = Email.query.filter_by(recipient = current_user.email)
             emailgroups = Group.query.filter_by(username=current_user.username)
+            userofgroups = GroupMember.query.filter_by(memberemail = current_user.username)
             logout_user()
             db.session.delete(user)
             for item in todoItems:
@@ -236,6 +237,8 @@ def delete():
                 for member in groupMembers:
                     db.session.delete(member)
                 db.session.delete(emailgroup)
+            for userofgroup in userofgroups:
+                db.session.delete(userofgroup)
             db.session.commit()
             flash("Your account has been successfully deleted.")
             return redirect("/")
