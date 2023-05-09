@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Email Home Page</h1>
-<form action="" method="post" novalidate>
+<form method="POST" action="/" enctype="multipart/form-data" novalidate>
     {{form.hidden_tag()}}
     <p>{{ form.todo() }} </p>
 
@@ -25,9 +25,8 @@
     <span style="color: red;"> [{{error}}]</span>
     {% endfor %}
     </p>
-    <form method="POST" enctype="multipart/form-data" action="/index">
-        <input type="file" name="file" accept=".png">
-    </form>
+        <input class="ok" type="file" name="file">
+        <button class="op">Submit</button>
   <br>
     <p>{{ form.send() }} </p>
 

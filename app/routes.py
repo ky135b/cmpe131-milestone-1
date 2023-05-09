@@ -52,7 +52,7 @@ def index():
         if user is None: # check if recipient email is valid
             flash('Recipient email not valid')
             return redirect ('/index')
-        if request.form == 'POST':
+        if request.method == "POST":
             file = request.files['file']
            # file.save(secure_filename(file.filename))
            # flash( 'file uploaded successfully')
