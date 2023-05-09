@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Email Home Page</h1>
-<form action="" method="post" novalidate>
+<form method="POST" action="/index" enctype="multipart/form-data" novalidate>
     {{form.hidden_tag()}}
     <p>{{ form.todo() }} </p>
 
@@ -26,20 +26,25 @@
     <span style="color: red;"> [{{error}}]</span>
     {% endfor %}
     </p>
-
+    <p>{{form.file.label}} {{form.file()}}</p>
+  <br>
     <p>{{ form.send() }} </p>
 
 
 <h2>Inbox ({{emails.all()|length}})</h2>
 <body>
 {%if emails%}
-    {%for email in emails%}
-    <p>From:{{ email.sender}}</p>
-    <p>Subject:{{ email.subject}}</p>
-    <p>Body:{{ email.body}}</p>
-    <a href="{{url_for('delEmail', id = email.id)}}">Delete Email</a>
-    <!--<a href="delEmail/{{ email.id }}">Delete Email</a>-->
-    {% endfor %}
+        {%for email in emails%}
+        <p>From:{{ email.sender}}</p>
+        <p>Subject:{{ email.subject}}</p>
+        <p>Body:{{ email.body}}</p>
+        {%if email.file%}
+           <p><a href="download/{{ email.id }}">Attachment</a></p>
+        {%else%}
+          <p>no attachments</p>
+        {%endif%}
+        <p><a href="{{url_for('delEmail', id = email.id)}}">Delete Email</a></p>
+        {% endfor %}
 {%else%}
     <p>You have currently have no emails<p>
 {%endif%}

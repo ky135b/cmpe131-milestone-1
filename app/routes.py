@@ -1,6 +1,6 @@
 from flask import render_template
-from flask import redirect, url_for
-from flask import flash
+from flask import redirect, request, url_for
+from flask import flash, send_file
 from .forms import LoginForm, LogoutForm, HomeForm, RegisterForm, DeleteAccountForm, AddTodoItem, ClearTodoList, CreateGroup, AddMember #ReturnForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User, TodoItem, Email, Group, GroupMember
@@ -11,6 +11,11 @@ from flask_login import logout_user
 from flask_login import login_required
 from . import db
 from flask_mail import Mail, Message
+from werkzeug.utils import secure_filename
+from io import BytesIO
+
+# # Define allowed files
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 @myapp_obj.route("/groups", methods=['GET', 'POST'])
 def groups():
@@ -113,7 +118,7 @@ def login():
             flash('Incorrect password!')
             return redirect('/')
         elif user.email != form.email.data:
-            flash(user.email + " " + form.email.data)
+            #flash(user.email + " " + form.email.data)
             flash('That email does not match the username!')
             flash('To register a new account, click the Register button below.')
             return redirect('/')
@@ -130,35 +135,42 @@ def index():
     if form.todo.data:
         return redirect('/todo')
     if form.validate_on_submit():
-        if form.recipient.data.endswith('@group'):
-            group = Group.query.filter_by(groupname = form.recipient.data[:-6]).first()
-            if group is None:
-                flash('Invalid email group!')
+        user = User.query.filter_by(email=form.recipient.data).first()
+        if user is None and not form.recipient.data.endswith('@group'): # check if recipient email is valid
+            flash('Recipient email not valid')
+            return redirect ('/index')
+        if request.method == "POST":
+            file = request.files['file']
+            if form.recipient.data.endswith('@group'):
+                group = Group.query.filter_by(groupname = form.recipient.data[:-6]).first()
+                if group is None:
+                    flash('Invalid email group!')
+                    return redirect("/index")
+                if group.username != current_user.username:
+                    flash('You can only send emails to @group addresses you created!')
+                    return redirect("/index")
+                gid = group.id
+                members = GroupMember.query.filter_by(groupid = gid)
+                if members is not None:
+                    for member in members:
+                        email = Email(subject = form.subject.data, recipient=member.memberemail, body = form.body.data, sender =form.recipient.data + " (" + current_user.email +")", file=file.filename, data=file.read())
+                        db.session.add(email)
+                db.session.commit()
+                flash('Email(s) sent!')
                 return redirect("/index")
-            if group.username != current_user.username:
-                flash('You can only send emails to @group addresses you created!')
+            else:
+                email = Email(subject = form.subject.data, recipient=form.recipient.data, body = form.body.data, sender =current_user.email, file = file.filename, data=file.read())
+                db.session.add(email)
+                db.session.commit()
+                flash('Email sent!')
                 return redirect("/index")
-            gid = group.id
-            members = GroupMember.query.filter_by(groupid = gid)
-            if members is not None:
-                for member in members:
-                    email = Email(subject = form.subject.data, recipient=member.memberemail, body = form.body.data, sender =form.recipient.data + " (" + current_user.email +")")
-                    db.session.add(email)
-            db.session.commit()
-            flash('Email(s) sent!')
-            return redirect("/index")
-        else:
-            user = User.query.filter_by(email=form.recipient.data).first()
-            if user is None: # check if recipient email is valid
-                flash('Recipient email not valid')
-                return redirect ('/index')
-            email = Email(subject = form.subject.data, recipient=form.recipient.data, body = form.body.data, sender =current_user.email)
-            db.session.add(email)
-            db.session.commit()
-            flash('Email sent!')
-            return redirect("/index")
     emails = Email.query.filter_by(recipient = current_user.email)
     return render_template('index.html', form = form, emails = emails)
+@myapp_obj.route('/download/<int:id>')
+def download(id):
+    img = Email.query.filter_by(id=id).first()
+    return send_file(BytesIO(img.data),
+                     download_name=img.file, as_attachment=True)
 @myapp_obj.route("/delEmail/<int:id>")
 def delEmail(id): #get email id of the email that is choosen to be deleted
     if not current_user.is_authenticated:

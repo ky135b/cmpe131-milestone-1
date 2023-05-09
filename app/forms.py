@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask import render_template
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, validators
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField, validators
 from wtforms.validators import DataRequired, EqualTo
 
 class CreateGroup(FlaskForm):
@@ -25,6 +25,7 @@ class HomeForm(FlaskForm):
     body = StringField('Body:', validators=[DataRequired(), validators.Length(max=200)])
     send = SubmitField('Send Email')
     todo = SubmitField('ToDo')
+    file = FileField('Choose File')
 #deleteEmail form might be removed if choose to not make delete email a button
 class DeleteEmail(FlaskForm):
     delete = SubmitField('Delete Email')
