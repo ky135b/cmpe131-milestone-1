@@ -56,4 +56,4 @@ To exit the virtual environment, run ``deactivate``. [Visit this page for more o
 To clear the database, run ``python3 tables.py``. This will drop all the tables and create them again by referencing ``app/models.py``.
 
 ### Windows
-This project does not support Windows.
+This project does not support Windows. To run the project on Windows, we reccommend [setting up WSL with Ubuntu](https://learn.microsoft.com/en-us/windows/wsl/install) and following the [Linux instructions](#linuxmacos).
