@@ -18,7 +18,7 @@ This email client is designed for the class project of CMPE 131 at SJSU.
 
 ## Dependencies
 | Package           | Version|
-|------------------:|:-------|
+|:------------------|:-------|
 | blinker           | 1.6.2  |
 | click             | 8.1.3  |
 | Flask             | 2.3.2  |
