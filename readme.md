@@ -45,4 +45,5 @@ This section assumes you have Python 3 (python3) and pip3 installed.
 4. ``source env/bin/activate``
 5. ``pip3 install -r dependencies.txt``
 6. ``python3 run.py``
+
 Once you finish, run ``deactivate``.
