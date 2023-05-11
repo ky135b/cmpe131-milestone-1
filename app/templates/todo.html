@@ -1,22 +1,46 @@
 {% extends "base.html" %}
 {% block content %}
+<style>
+    .completed {
+        text-decoration: line-through;
+    }
+
+    ul{
+      list-style-type: none;
+    }
+</style>
 <h1>Todo List</h1>
 {% if not emptyList %}
 <ul>
     {% for item in items %}
-      <span style="color: blue;">  <li>{{ item.content }} </li> </span>
+      <li>
+        <input type="checkbox" onchange="handleCheckboxChange(this)">
+          <span class="item-content"> {{ item.content }}</span>
+      </li>
     {% endfor %}
 </ul>
 {% endif %}
 <a href="{{ url_for('todoAdd') }}">Click here to add todo list items!</a>
 
 <form action="" method="POST" novalidate>
-  {{form.hidden_tag()}}
-  <p>Clear Todo List? This cannot be reversed.<br>{{form.confirm}}{{form.confirm.label}}
+  {{ form.hidden_tag() }}
+  <p>Clear Todo List? This cannot be reversed.<br>{{ form.confirm }}{{ form.confirm.label }}
      <br>
-  {{form.submit()}}
+  {{ form.submit() }}
   </p>
 </form>
+
+<script>
+function handleCheckboxChange(checkbox) {
+  var itemContent = checkbox.nextElementSibling;
+  if (checkbox.checked) {
+    itemContent.classList.add('completed');
+    itemContent.toggleComplete(itemContent);
+  } else {
+    itemContent.classList.remove('completed');
+  }
+}
+</script>
 
 {% include "login_footer.html" %}
 {% endblock %}

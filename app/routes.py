@@ -1,6 +1,7 @@
 from flask import render_template
 from flask import redirect
 from flask import flash
+from flask import request
 from .forms import LoginForm, LogoutForm, HomeForm, RegisterForm, DeleteAccountForm, AddTodoItem, ClearTodoList #ReturnForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User, TodoItem, Email
@@ -61,19 +62,33 @@ def index():
 @myapp_obj.route("/members/<string:name>/")
 def getMember(name):
     return escape(name)
+    
+ 
+def toggleComplete(item):
+    if item.completed:
+        item.completed = False
+    else:
+        item.completed = True
+    print("in toggleComplete")
+    print(item.completed)
+    return
+    
+
 @myapp_obj.route("/todo", methods=['GET', 'POST'])
 def todo():
     if not current_user.is_authenticated: 
         flash("You aren't logged in yet!")
         return redirect('/')
     form = ClearTodoList()
-    #form = ReturnForm()
-    #if form.validate_on_submit():
-#        flash('validate')
-    #    return redirect("/index")
     noItems = False
-    todoItems = TodoItem.query.filter_by(username = current_user.username)
-    if todoItems is None: noItems = True
+    todoItems = TodoItem.query.filter_by(username=current_user.username)
+    if not todoItems:
+        noItems = True
+    if request.method == 'POST':
+        for item in todoItems:
+            item.completed = str(item.id) in request.form.getlist('completed')
+        db.session.commit()
+
     if form.validate_on_submit():
         if not form.confirm.data:
             flash("Please confirm that you want to clear your todo list before pressing the Clear Todo List button!")
@@ -84,7 +99,10 @@ def todo():
             db.session.commit()
             flash("Your Todo List has been cleared!")
             return redirect('/todo')
-    return render_template('todo.html', items = todoItems, emptyList = noItems, form=form)
+
+    return render_template('todo.html', items=todoItems, emptyList=noItems, form=form, toggleComplete=toggleComplete)
+
+
 @myapp_obj.route("/todoAdd", methods=['GET', 'POST'])
 def todoAdd():
     if not current_user.is_authenticated: 
