@@ -21,26 +21,36 @@
   </style>
 </head>
 <body>
-  <h1>Chat Page</h1>
+  <h1>Chat Room: {{ recipient.username }}</h1>
 
-  <div id="chatbox"></div>
+<div id="chatbox">
+  {% for message in messages %}
+    <p>{{ message.body }}</p>
+    {% endfor %}
+</div>
 
-  <input type="text" id="input" placeholder="Type your message here">
-  <button onclick="sendMessage()">Send</button>
+<input type="text" id="input" placeholder="Type your message here">
+<button onclick="sendMessage()">Send</button>
 
-  <script>
-    function sendMessage() {
-      var input = document.getElementById("input");
-      var message = input.value;
-      if (message !== "") {
-        var chatbox = document.getElementById("chatbox");
-        chatbox.innerHTML += "<p>You: " + message + "</p>";
-        input.value = "";
-        chatbox.scrollTop = chatbox.scrollHeight;
-      }
-    }
-  </script>
-</body>
-</html>
+<script>
+  function sendMessage() {
+    // Add your logic to send the message to the server and update the chatbox
+  }
+</script>
+
+{% include "login_footer.html" %}
 
 {% endblock %}
+
+<!--
+  <h1>Chat Room: {{ recipient.username }}</h1>
+
+  <div id="chatbox">
+    {% for message in messages %}
+    <p>{{ message.body }}</p>
+    {% endfor %}
+  </div>
+
+  <input type="text" id="input" placeholder="Type your message here">
+  <button onclick
+-->

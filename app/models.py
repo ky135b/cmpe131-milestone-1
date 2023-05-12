@@ -61,6 +61,23 @@ class Message(db.Model):
 
     def __repr__(self):
         return '<Message {}>'.format(self.body)
+    
+class Chat(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(32), nullable=False)
+    messages = db.relationship('ChatMessage', backref='chat', lazy='dynamic')
+
+    def __repr__(self):
+        return f'<Chat {self.id}: {self.name}>'
+
+class ChatMessage(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    chat_id = db.Column(db.Integer, db.ForeignKey('chat.id'))
+    body = db.Column(db.String(140))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+    def __repr__(self):
+        return '<ChatMessage {}>'.format(self.body)
 
 @login.user_loader
 def load_user(id):

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Chat Home Page</h1>
+<!-- Display existing chats -->
+<ul>
+    {% for chat in chats %}
+      <li>{{ chat.name }}</li>
+    {% endfor %}
+  </ul>
+  
+  <!-- Create a new chat form -->
+  <form action="{{ url_for('create_chat') }}" method="POST">
+    <input type="text" name="username_or_email" placeholder="Please enter User Name or Email">
+    <button type="submit">Create Chat</button>
+  </form>
+
+  <!--Display error message if it exists--> 
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="User does not exist!">
+        {{ messages[0] }}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+<h2>Chat Selection</h2>
+<ul>
+  {% for chat in chats %}
+  <li><a href="{{ url_for('chat_room', recipient=chat.name) }}">{{ chat.name }}</a></li>
+  {% endfor %}
+</ul>
+
+{% include "login_footer.html" %}
+{% endblock %}
+

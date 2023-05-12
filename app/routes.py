@@ -2,9 +2,10 @@ from flask import render_template
 from flask import redirect
 from flask import flash
 from flask import request
+from flask import url_for
 from .forms import LoginForm, LogoutForm, HomeForm, RegisterForm, DeleteAccountForm, AddTodoItem, ClearTodoList #ReturnForm
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import User, TodoItem, Email
+from .models import User, TodoItem, Email, Chat
 from app import myapp_obj
 from flask_login import current_user
 from flask_login import login_user
@@ -46,7 +47,7 @@ def index():
     if form.todo.data:
         return redirect('/todo')
     if form.chat.data:
-        return redirect('/chat')
+        return redirect('/chathome')
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.recipient.data).first()
         if user is None: # check if recipient email is valid
@@ -144,9 +145,58 @@ def delete():
             flash("Please enter your correct password and try again!")
             return redirect("/delete")
     return render_template('delete.html', title = 'Logout Confirmation', form = form)
-@myapp_obj.route("/chat", methods=['POST', 'GET'])
-def chat():
-    return render_template('chat.html', title = 'Chat')
+
+#This will take care of the chat home page.
+@myapp_obj.route("/chathome", methods=['GET', 'POST'])
+@login_required
+def chathome():
+    form = HomeForm()
+    # Fetch the chat list from the database
+    if request.method == 'POST':
+        return create_chat()
+    
+    chats = Chat.query.all()
+
+    if form.validate_on_submit():
+        recipient = form.recipient.data
+        # Check if recipient is a registered user
+        user = User.query.filter_by(username=recipient).first()
+        if user is None:
+            flash('Recipient username is not valid')
+            return redirect('/chathome')
+        # Redirect to the chat or create a new chat room
+        return redirect(url_for('chat_room', recipient=recipient))
+    return render_template('chathome.html', title='Chat_home', form=form, chats=chats)
+
+
+#this will take care of the chat converstion page
+@myapp_obj.route("/chat/<recipient>", methods=['GET', 'POST'])
+@login_required
+def chat_room(recipient):
+    # Get the recipient user
+    recipient_user = User.query.filter_by(username=recipient).first_or_404()
+    # ... additional logic for loading existing chat messages or creating a new chat ...
+    return render_template('chat.html', title='Chat', recipient=recipient_user)
+
+#this will take care of creating a new chat
+@myapp_obj.route('/create_chat', methods=['POST'])
+def create_chat():
+    name = request.form.get('username_or_email')
+    email_or_username = request.form.get('username_or_email')  
+
+    # Check if a user with the provided email or username exists
+    user = User.query.filter((User.email == email_or_username) | (User.username == email_or_username)).first()
+    if not user:
+        flash('Please enter a valid user email!')
+        return redirect(url_for('chathome'))
+    
+    chat = Chat(name=name)
+    db.session.add(chat)
+    db.session.commit()
+
+    return redirect(url_for('chathome'))
+
+
 @myapp_obj.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated: 
