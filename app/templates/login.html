@@ -1,6 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
+<style>
+div.container{
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(
+    to right,
+    paleturquoise 0%,
+    paleturquoise 50%,
+    white 50%,
+    white 100%
+  );
+  
+}
+h1{
+  text-align: 75%;
+</style>
+<div class ="container">
 <h1>Sign In</h1>
+</style>
 <form action="" method="POST" novalidate>
     {{form.hidden_tag()}}
     <p> {{form.username.label}} <br>
@@ -30,5 +48,6 @@
     <p>{{form.submit()}}</p>
     <body> Don't have an account? Click the register button </body>
     <p>{{form.register()}}</p>
+    </div>
 </form>
 {% endblock %}
