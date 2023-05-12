@@ -35,9 +35,9 @@
 <body>
 {%if emails%}
         {%for email in emails%}
-        <p>From:{{ email.sender}}</p>
-        <p>Subject:{{ email.subject}}</p>
-        <p>Body:{{ email.body}}</p>
+        <p>From: {{ email.sender}}</p>
+        <p>Subject: {{ email.subject}}</p>
+        <p>Body: {{ email.body}}</p>
         {%if email.file%}
            <p><a href="download/{{ email.id }}">Attachment</a></p>
         {%else%}
