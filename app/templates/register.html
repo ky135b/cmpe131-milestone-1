@@ -1,5 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
+<style>
+div.container{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 50%;
+    height: 100%;
+    background-color: #F4D06F;
+    z-index: 1;
+}
+div.text{
+ text-align:left;
+ font-size:120%;
+ position:absolute; left:900px; top:90px;
+ white-space: nowrap;
+}
+h1{
+  font-weight: bold;
+  font-color: #423B0B;
+}
+</style>
+<div class ="container">
+<div class ="text">
 <h1>Create your Email Account</h1>
 <body> To register, please fill out the following fields below </body>
 <form action="" method="POST" novalidate>
@@ -43,5 +66,7 @@
            Already have an account? No problem, sign in instead
     </body>
     <p>{{form.sign()}}</p>
+    </div>
+    </div>
 </form>
 {% endblock %}
