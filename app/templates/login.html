@@ -1,28 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-<style>
-div.container{
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 50%;
-    height: 100%;
-    background-color: #9DD9D2;
-    z-index: 1;
-}
-div.text{
- font-size:120%;
- position:absolute; left:900px; top:150px;
- white-space: nowrap;
-}
-h1{
-  font-weight: bold;
-}
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
 </style>
 <div class ="container">
 <div class ="text">
 <h1>Sign In</h1>
 </style>
+<body>
 <form action="" method="POST" novalidate>
     {{form.hidden_tag()}}
     <p> {{form.username.label}} <br>
@@ -50,10 +36,11 @@ h1{
        {{form.remember_me()}}</p>
 
     <p>{{form.submit()}}</p>
-    <body> Don't have an account? Click the register button </body>
+    <p> Don't have an account? Click the register button </p>
     <p>{{form.register()}}</p>
     </div>
     </div>
 
 </form>
+</body>
 {% endblock %}
