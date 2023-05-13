@@ -186,6 +186,14 @@ def delEmail(id): #get email id of the email that is choosen to be deleted
 @myapp_obj.route("/members/<string:name>/")
 def getMember(name):
     return escape(name)
+
+@myapp_obj.route("/todo/<int:id>", methods=['GET', 'POST'])
+def todoNew(id):
+    item = TodoItem.query.get(id);
+    item.completed = not item.completed;
+    db.session.commit();
+    return redirect('/todo')
+    
 @myapp_obj.route("/todo", methods=['GET', 'POST'])
 def todo():
     if not current_user.is_authenticated: 
@@ -210,6 +218,7 @@ def todo():
             flash("Your Todo List has been cleared!")
             return redirect('/todo')
     return render_template('todo.html', items = todoItems, emptyList = noItems, form=form)
+
 @myapp_obj.route("/todoAdd", methods=['GET', 'POST'])
 def todoAdd():
     if not current_user.is_authenticated: 
