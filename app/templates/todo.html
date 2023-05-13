@@ -4,7 +4,10 @@
 {% if not emptyList %}
 <ul>
     {% for item in items %}
-      <span style="color: blue;">  <li>{{ item.content }} </li> </span>
+      <li>
+        <input type="checkbox" id={{item.id}} class="check" value="on" {{"checked" if item.completed}}>
+        <span style="color: blue;" id="c{{item.id}}">{{ item.content }}</span>
+      </li>
     {% endfor %}
 </ul>
 {% endif %}
@@ -18,5 +21,28 @@
   </p>
 </form>
 <a href="{{ url_for('index') }}">Home Page</a>
+
+<script>
+  window.onload = function() {
+    var checkboxes = document.getElementsByClassName("check");
+    //console.log(checkboxes);
+    for (var i = 0; i < checkboxes.length; i++) {
+      if(checkboxes[i].checked) {
+        document.getElementById("c"+checkboxes[i].id).style.setProperty("text-decoration", "line-through");
+      }
+      checkboxes[i].addEventListener('change', (event) => {
+        if (event.currentTarget.checked)
+        {
+          document.getElementById("c"+event.currentTarget.id).style.setProperty("text-decoration", "line-through");
+        }
+        else
+        {
+          document.getElementById("c"+event.currentTarget.id).style.setProperty("text-decoration", "");
+        }
+        window.location.replace("{{ url_for('todo') }}/" + event.currentTarget.id);
+      });
+    }
+  }
+</script>
 {% include "login_footer.html" %}
 {% endblock %}
