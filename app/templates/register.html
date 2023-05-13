@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<div class ="container">
+<div class ="text">
 <h1>Create your Email Account</h1>
 <body> To register, please fill out the following fields below </body>
 <form action="" method="POST" novalidate>
@@ -43,5 +48,7 @@
            Already have an account? No problem, sign in instead
     </body>
     <p>{{form.sign()}}</p>
+    </div>
+    </div>
 </form>
 {% endblock %}

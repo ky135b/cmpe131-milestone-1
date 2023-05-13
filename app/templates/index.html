@@ -1,11 +1,34 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Email Home Page</h1>
+<h1>Email Home Page </h1>
+<style>
+h1 {
+  color: black;
+  font-size: 200%;
+}
+h2 {
+  color: black;
+  font-size: 200%;
+}
+p {
+  color: black;
+  font-size: 100%%;
+}
+div.sending{
+ background-color: #f2f2f2;
+}
+div.inbox {
+  background-color: #f2f2f2;
+  width: 600px;
+  height: 160px;
+  text-indent: 10px;
+}
+</style>
 <form method="POST" action="/index" enctype="multipart/form-data" novalidate>
     {{form.hidden_tag()}}
     <p>{{ form.todo() }} </p>
-
     <a href="{{ url_for('groups') }}">View Email Groups</a>
+    <div class="sending">
     <p> {{form.recipient.label}} <br>
        {{form.recipient(size=32)}}
     {%for error in form.recipient.errors%}
@@ -20,7 +43,7 @@
     {% endfor %}
     </p>
 
-    <p> {{form.body.label}} <br>
+    <p class = "body"> {{form.body.label}} <br>
        {{form.body(size=200)}}
     {%for error in form.body.errors%}
     <span style="color: red;"> [{{error}}]</span>
@@ -29,21 +52,23 @@
     <p>{{form.file.label}} {{form.file()}}</p>
   <br>
     <p>{{ form.send() }} </p>
-
+    </div>
 
 <h2>Inbox ({{emails.all()|length}})</h2>
 <body>
 {%if emails%}
         {%for email in emails%}
-        <p>From:{{ email.sender}}</p>
-        <p>Subject:{{ email.subject}}</p>
-        <p>Body:{{ email.body}}</p>
+        <div class = "inbox">
+        <p>From: {{ email.sender}}</p>
+        <p>Subject: {{ email.subject}}</p>
+        <p>Body: {{ email.body}}</p>
         {%if email.file%}
            <p><a href="download/{{ email.id }}">Attachment</a></p>
         {%else%}
           <p>no attachments</p>
         {%endif%}
         <p><a href="{{url_for('delEmail', id = email.id)}}">Delete Email</a></p>
+        </div>
         {% endfor %}
 {%else%}
     <p>You have currently have no emails<p>

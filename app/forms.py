@@ -4,7 +4,7 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileF
 from wtforms.validators import DataRequired, EqualTo
 
 class CreateGroup(FlaskForm):
-    groupname = StringField('Group Address', validators=[DataRequired(), validators.Length(max=26)])
+    groupname = StringField('Group Address', validators=[DataRequired(), validators.Length(max=26)], render_kw={"placeholder": "hello"})
     create = SubmitField('Create')
 
 class AddMember(FlaskForm):
@@ -12,17 +12,17 @@ class AddMember(FlaskForm):
     add = SubmitField('Add Member')
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), validators.Length(max=32)])
-    email = StringField('Email', validators=[DataRequired(), validators.Length(max=32)])
+    username = StringField('Username', validators=[DataRequired(), validators.Length(max=32)], render_kw={"placeholder": "user1"})
+    email = StringField('Email', validators=[DataRequired(), validators.Length(max=32)], render_kw={"placeholder": "user1@email.com"})
     password = PasswordField('Password', validators=[DataRequired(), validators.Length(max=32)])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
     register = SubmitField('Register')
 
 class HomeForm(FlaskForm):
-    recipient = StringField('To:', validators=[DataRequired(), validators.Length(max=32)])
-    subject = StringField('Subject:', validators=[DataRequired(), validators.Length(max=32)])
-    body = StringField('Body:', validators=[DataRequired(), validators.Length(max=200)])
+    recipient = StringField('To:', validators=[DataRequired(), validators.Length(max=32)], render_kw={"placeholder": "user2@email.com"})
+    subject = StringField('Subject:', validators=[DataRequired(), validators.Length(max=32)], render_kw={"placeholder": "cmpe131"})
+    body = StringField('Body:', validators=[DataRequired(), validators.Length(max=200)], render_kw={"placeholder": "hello"})
     send = SubmitField('Send Email')
     todo = SubmitField('ToDo')
     file = FileField('Choose File')
@@ -49,8 +49,8 @@ class ClearTodoList(FlaskForm):
 
 
 class RegisterForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), validators.Length(max=32)])
-    email = StringField('Email', validators=[DataRequired(), validators.Length(max=32)])
+    username = StringField('Username', validators=[DataRequired(), validators.Length(max=32)], render_kw={"placeholder": "user1"})
+    email = StringField('Email', validators=[DataRequired(), validators.Length(max=32)], render_kw={"placeholder": "user1@email.com"})
 #    password = PasswordField('Password', validators=[DataRequired()])
 #    repassword = PasswordField('Confirm Password', validators=[DataRequired()])
     #check if new password and confirm password are equal to each other

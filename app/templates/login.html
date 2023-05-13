@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+</style>
+<div class ="container">
+<div class ="text">
 <h1>Sign In</h1>
+</style>
+<body>
 <form action="" method="POST" novalidate>
     {{form.hidden_tag()}}
     <p> {{form.username.label}} <br>
@@ -28,7 +36,11 @@
        {{form.remember_me()}}</p>
 
     <p>{{form.submit()}}</p>
-    <body> Don't have an account? Click the register button </body>
+    <p> Don't have an account? Click the register button </p>
     <p>{{form.register()}}</p>
+    </div>
+    </div>
+
 </form>
+</body>
 {% endblock %}
