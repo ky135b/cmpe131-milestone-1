@@ -62,6 +62,7 @@ class Email(db.Model):
    sender = db.Column(db.String(32), nullable =False)
    file = db.Column(db.String(50), nullable = False)
    data = db.Column(db.LargeBinary, nullable = False)
+   urgent = db.Column(db.Integer, nullable=False)
    def __repr__(self):
         return f'<Email {self.id}: {self.subject} {self.body}>'
 

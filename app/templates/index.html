@@ -20,7 +20,9 @@ div.sending{
 div.inbox {
   background-color: #f2f2f2;
   width: 600px;
-  height: 160px;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  padding-top: 2px;
   text-indent: 10px;
 }
 </style>
@@ -55,25 +57,53 @@ div.inbox {
     </div>
 
 <h2>Inbox ({{emails.all()|length}})</h2>
-<body>
 {%if emails%}
-        {%for email in emails%}
-        <div class = "inbox">
-        <p>From: {{ email.sender}}</p>
-        <p>Subject: {{ email.subject}}</p>
-        <p>Body: {{ email.body}}</p>
-        {%if email.file%}
-           <p><a href="download/{{ email.id }}">Attachment</a></p>
-        {%else%}
-          <p>no attachments</p>
-        {%endif%}
-        <p><a href="{{url_for('delEmail', id = email.id)}}">Delete Email</a></p>
-        </div>
-        {% endfor %}
+        {%for email in emails%}{% if email.urgent %}
+          <div class = "inbox">
+          <p>URGENT!</p>
+          <p>From: {{ email.sender}}</p>
+          <p>Subject: {{ email.subject}}</p>
+          <p>Body: {{ email.body}}</p>
+          {%if email.file%}
+            <p><a href="download/{{ email.id }}">Attachment</a></p>
+          {%else%}
+            <p>no attachments</p>
+          {%endif%}
+          <p><input type="checkbox" id={{email.id}} class="urgent" value="on" {{"checked" if email.urgent}}>
+            Urgent?</p>
+          <p><a href="{{url_for('delEmail', id = email.id)}}">Delete Email</a></p>
+          </div>
+        {% endif %}{% endfor %}
+
+        {%for email in emails%}{% if not email.urgent %}
+          <div class = "inbox">
+          <p>From: {{ email.sender}}</p>
+          <p>Subject: {{ email.subject}}</p>
+          <p>Body: {{ email.body}}</p>
+          {%if email.file%}
+            <p><a href="download/{{ email.id }}">Attachment</a></p>
+          {%else%}
+            <p>no attachments</p>
+          {%endif%}
+          <p><input type="checkbox" id={{email.id}} class="urgent" value="on" {{"checked" if email.urgent}}>
+            Urgent?</p>
+          <p><a href="{{url_for('delEmail', id = email.id)}}">Delete Email</a></p>
+          </div>
+        {%endif%}{% endfor %}
 {%else%}
     <p>You have currently have no emails<p>
 {%endif%}
-</body>
 </form>
+<script>
+  window.onload = function() {
+    var emailboxes = document.getElementsByClassName("urgent");
+    //console.log(checkboxes);
+    for (var i = 0; i < emailboxes.length; i++) {
+      emailboxes[i].addEventListener('change', (event) => {
+        window.location.replace("{{ url_for('index') }}/" + event.currentTarget.id);
+      });
+    }
+  }
+</script>
 {% include "login_footer.html" %}
 {% endblock %}

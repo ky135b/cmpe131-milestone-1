@@ -94,7 +94,7 @@ def addgroupmember(gid):
                 return redirect(url_for('viewgroup', gid = gid))
 
     return render_template('groupAdd.html', form = form, group = groupCheck)
-
+    
 @myapp_obj.route("/", methods=['GET', 'POST'])
 @myapp_obj.route("/login", methods=['GET', 'POST'])
 def login():
@@ -126,6 +126,14 @@ def login():
             login_user(user)
             return redirect('/index')
     return render_template('login.html', form=form)
+
+@myapp_obj.route("/index/<int:id>", methods=['GET', 'POST'])
+def indexNew(id):
+    email = Email.query.get(id);
+    email.urgent = not email.urgent;
+    db.session.commit();
+    return redirect('/index')
+
 @myapp_obj.route("/index", methods=['GET', 'POST'])
 def index():
     if not current_user.is_authenticated: 
@@ -153,13 +161,13 @@ def index():
                 members = GroupMember.query.filter_by(groupid = gid)
                 if members is not None:
                     for member in members:
-                        email = Email(subject = form.subject.data, recipient=member.memberemail, body = form.body.data, sender =form.recipient.data + " (" + current_user.email +")", file=file.filename, data=file.read())
+                        email = Email(urgent = False, subject = form.subject.data, recipient=member.memberemail, body = form.body.data, sender =form.recipient.data + " (" + current_user.email +")", file=file.filename, data=file.read())
                         db.session.add(email)
                 db.session.commit()
                 flash('Email(s) sent!')
                 return redirect("/index")
             else:
-                email = Email(subject = form.subject.data, recipient=form.recipient.data, body = form.body.data, sender =current_user.email, file = file.filename, data=file.read())
+                email = Email(urgent = False, subject = form.subject.data, recipient=form.recipient.data, body = form.body.data, sender =current_user.email, file = file.filename, data=file.read())
                 db.session.add(email)
                 db.session.commit()
                 flash('Email sent!')
