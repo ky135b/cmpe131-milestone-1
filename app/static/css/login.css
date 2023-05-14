@@ -1,5 +1,5 @@
 div.text{
-  font-size:120%;
+  font-size:100%;
   position:absolute; left:870px; top:150px;
   white-space: nowrap;
   font-color: white;
@@ -8,7 +8,7 @@ div.text{
   border: 2px solid white;
   padding: 20px; 
   width: 420px;
-  height: 460px;
+  height: 490px;
 }
 h1{
   font-weight: bold;

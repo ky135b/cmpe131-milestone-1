@@ -1,14 +1,14 @@
 div.text{
-  font-size:100%;
-  position:absolute; left:870px; top:150px;
+  font-size:95%;
+  position:absolute; left:870px; top:130px;
   white-space: nowrap;
   font-color: white;
   color:white;
   border-radius: 25px;
   border: 2px solid white;
-  padding: 20px;
-  width: 420px;
-  height: 460px;
+  width: 530px;
+  height: 600px;
+  padding: 15px;
 }
 h1{
   font-weight: bold;
