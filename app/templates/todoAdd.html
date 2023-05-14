@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/todoAdd.css') }}">
+</head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav>
@@ -25,6 +28,7 @@
     </ul>
   </div>
 </nav>
+<h1> Add Todo Tasks </h1>
 <form action="" method="POST" novalidate>
     {{form.hidden_tag()}}
     <p> {{form.content.label}}
