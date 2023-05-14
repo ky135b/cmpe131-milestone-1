@@ -29,6 +29,7 @@
   </div>
 </nav>
 <h1> Add Todo Tasks </h1>
+<div class=task>
 <form action="" method="POST" novalidate>
     {{form.hidden_tag()}}
     <p> {{form.content.label}}
@@ -39,6 +40,7 @@
     {{form.submit()}}
     </p>
 </form>
+</div>
 
 <a href="{{ url_for('todo') }}">Click here to go back to your Todo List!</a>
 

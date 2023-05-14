@@ -7,3 +7,17 @@ h1 {
   text-align:center;
   background-color: #392F5A;
 }
+div.title
+{
+  padding-left: 10px;
+  color: black;
+  font-size: 120%;
+  font-weight: bold;
+}
+div.names{
+  padding-left:10px;
+}
+div.group
+{
+  padding-left:10px;
+}

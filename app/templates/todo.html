@@ -30,15 +30,16 @@
 </nav>
 <h1>Todo List</h1>
 {% if not emptyList %}
-<ul>
+<body>
     {% for item in items %}
-      <li>
+      <div class=tasks>
         <input type="checkbox" id={{item.id}} class="check" value="on" {{"checked" if item.completed}}>
-        <span style="color: blue;" id="c{{item.id}}">{{ item.content }}</span>
-      </li>
+        <span style="color: black;" id="c{{item.id}}">{{ item.content }}</span>
+      </div>
     {% endfor %}
-</ul>
+</body>
 {% endif %}
+<div class=clear>
 <a href="{{ url_for('todoAdd') }}">Click here to add todo list items!</a>
 
 <form action="" method="POST" novalidate>
@@ -48,8 +49,7 @@
   {{form.submit()}}
   </p>
 </form>
-<a href="{{ url_for('index') }}">Home Page</a>
-
+</div>
 <script>
   window.onload = function() {
     var checkboxes = document.getElementsByClassName("check");

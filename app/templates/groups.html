@@ -28,13 +28,20 @@
   </div>
 </nav>
 <h1>Email Groups</h1>
-
-<a href="{{ url_for('creategroup') }}">Create New Group</a>
+<body>
+<div class=title>
+<p> Groups: <p>
+</div>
+<div class=names>
 <ul>
     {% for g in emailgroups %}
       <span style="color: blue;"><li><a href="{{ url_for('viewgroup', gid = g.id) }}">{{ g.groupname }}@group</a></li> </span>
     {% endfor %}
 </ul>
-<a href="{{ url_for('index') }}">Home Page</a>
+</ul>
+<div class=group>
+<a href="{{ url_for('creategroup') }}">Create New Group</a>
+</div>
+</body>
 {% include "login_footer.html" %}
 {% endblock %}
