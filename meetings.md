@@ -102,5 +102,3 @@
 - Updates:
   - Continued to work together to solve issues in different requirements.
 - Summary: As the team already knew what to work towards, we continued to work toward the project goals and helped each other as issues came up.
-
-### 2023-05-11 at 2:20 PM
