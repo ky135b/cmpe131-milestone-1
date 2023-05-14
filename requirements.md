@@ -4,11 +4,11 @@
 
 - [x] ~~Milestone 2: (1) sending an email @n-k-leung~~
 - [x] ~~Milestone 2: (2) deleting an email @n-k-leung~~
-- [ ] Milestone 3: (3) flagging an email as urgent @rudysuarez1
+- [x] ~~Milestone 3: (3) flagging an email as urgent @ky135b~~
 - [x] ~~Milestone 2: (4) clear all tasks from the todo list @ky135b~~
 - [x] ~~Milestone 2: (5) creating a new task on the todo list @ky135b~~
-- [ ] Milestone 3: (6) crossing off a task on the todo list @rudysuarez1
-- [ ] Milestone 3: (7) sending chat messages @rudysuarez1
+- [x] ~~Milestone 3: (6) crossing off a task on the todo list @ky135b~~
+- [ ] Milestone 3: (7) sending chat messages @rudysuarez1 [extra]
 - [x] ~~Milestone 2: (8) registering for the email website @n-k-leung~~
 - [ ] Milestone 3: (9) advanced search using regex @ky135b [extra]
 - [x] ~~Milestone 2: (10) delete email account from email website @ky135b~~
